@@ -9,31 +9,38 @@ import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.SmallTest
 import com.gk.app.android.testingviewmodels.R
-import com.gk.app.android.testingviewmodels.mainFragmentFactoryFake
 import com.gk.app.android.testingviewmodels.ui.main.MainActivity
+import dagger.hilt.android.testing.HiltAndroidRule
+import dagger.hilt.android.testing.HiltAndroidTest
+import dagger.hilt.android.testing.HiltTestApplication
 import org.junit.Before
+import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.robolectric.annotation.Config
 
+/**
+ * MainActivity is only responsible for showing MainFragment
+ */
 @SmallTest
 @RunWith(AndroidJUnit4::class)
+@HiltAndroidTest
 class MainActivityUnitTests {
 
-    private lateinit var activityScenario : ActivityScenario<MainActivity>
-    private lateinit var activity : MainActivity
+    @get:Rule
+    var hiltRule = HiltAndroidRule(this)
+
+    private lateinit var activityScenario: ActivityScenario<MainActivity>
 
     @Before
     fun setUp() {
+        hiltRule.inject()
         activityScenario = ActivityScenario.launch(MainActivity::class.java)
-        activityScenario.onActivity {
-            activity = it
-        }
     }
 
     @Test
     fun mainFragment_isDisplayed() {
         // GIVEN - A MainActivity
-        activity.setFragmentFactory(mainFragmentFactoryFake)
 
         // WHEN - Activity is created then resumed, correct app version is shown
         activityScenario.moveToState(Lifecycle.State.CREATED)

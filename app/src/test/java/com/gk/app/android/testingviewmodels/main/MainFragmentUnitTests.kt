@@ -10,7 +10,6 @@ import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.SmallTest
 import com.gk.app.android.testingviewmodels.R
-import com.gk.app.android.testingviewmodels.mainFragmentFactoryFake
 import com.gk.app.android.testingviewmodels.ui.main.MainFragment
 import org.junit.Before
 import org.junit.Test
@@ -21,16 +20,12 @@ import org.junit.runner.RunWith
 @RunWith(AndroidJUnit4::class)
 class MainFragmentUnitTests {
 
-    private lateinit var fragmentScenario : FragmentScenario<MainFragment>
-    private lateinit var fragment : MainFragment
+    private lateinit var fragmentScenario: FragmentScenario<MainFragment>
+    private lateinit var fragment: MainFragment
 
     @Before
     fun setUp() {
-        fragmentScenario = FragmentScenario.launch(
-            MainFragment::class.java,
-            Bundle(),
-            mainFragmentFactoryFake
-        )
+        fragmentScenario = FragmentScenario.launch(MainFragment::class.java)
         fragmentScenario.onFragment {
             fragment = it
         }

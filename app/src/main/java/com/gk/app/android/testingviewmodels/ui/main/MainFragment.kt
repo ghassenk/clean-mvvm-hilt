@@ -6,28 +6,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentFactory
 import androidx.fragment.app.viewModels
 import com.gk.app.android.testingviewmodels.R
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.main_fragment.*
+import org.jetbrains.annotations.TestOnly
 
 @AndroidEntryPoint
-class MainFragment(
-    private var mainViewModel: MainViewModel? = null
-) : Fragment() {
+class MainFragment : Fragment() {
 
-    class Factory(
-        private val viewModel: MainViewModel? = null
-    ) : FragmentFactory() {
-        override fun instantiate(classLoader: ClassLoader, className: String): Fragment {
-            return if (className == MainFragment::class.java.name) {
-                MainFragment(viewModel)
-            } else {
-                super.instantiate(classLoader, className)
-            }
-        }
-    }
+    private var mainViewModel: MainViewModel? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -70,5 +58,10 @@ class MainFragment(
         Log.d(javaClass.simpleName, "onViewStateRestored() savedInstanceState=$savedInstanceState")
 
         super.onViewStateRestored(savedInstanceState)
+    }
+
+    @TestOnly
+    fun setViewModel(viewModel: MainViewModel) {
+        mainViewModel = viewModel
     }
 }
