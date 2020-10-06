@@ -1,13 +1,57 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
-    ext.kotlin_version = "1.4.10"
+
+    ext {
+        versions = [
+                activity_ktx: '1.1.0',
+                androidx_arch_core: '2.1.0',
+                androidx_fragment: '1.2.5',
+                androidx_test_core: '1.3.0',
+                androidx_test_espresso_core: '3.2.0',
+                androidx_test_ext_junit: '1.1.1',
+                androidx_test_junit: '1.1.1',
+                androidx_test_rule: '1.2.0',
+                androidx_test_runner: '1.3.0',
+                androidx_test_truth: '1.2.0',
+                appcompat: '1.2.0',
+                constraint: '2.0.1',
+                core_ktx: '1.3.1',
+                coroutines: '1.3.9',
+                fragment_ktx: '1.2.5',
+                gradle: '4.0.1',
+                gridlayout: '1.0.0',
+                gson: '2.8.6',
+                // Do not update for now because some testing frameworks depend on specific junit versions
+                junit: '4.12',
+                kotlin_version: '1.4.10',
+                lifecycle_runtime_ktx: '2.2.0',
+                lifecycle_extensions: '2.2.0',
+                lifecycle_viewmodel_ktx: '2.2.0',
+                lifecycle_livedata_ktx: '2.2.0',
+                mockito: '3.5.7',
+                multidex: '2.0.1',
+                multidex_inst: '2.0.0',
+                okhttp: '4.8.1',
+                okhttp_mock_server : '4.8.1',
+                paging: '1.0.1',
+                preference_ktx: '1.1.1',
+                recyclerview: '1.1.0',
+                retrofit: '2.9.0',
+                robolectric: '4.3.1',
+                support: '28.0.0',
+                support_legacy: '1.0.0',
+                truth: '1.0.1'
+        ]
+    }
+
     repositories {
         google()
         jcenter()
     }
+
     dependencies {
-        classpath "com.android.tools.build:gradle:4.0.0"
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "com.android.tools.build:gradle:4.0.1"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${versions.kotlin_version}"
         classpath 'com.google.dagger:hilt-android-gradle-plugin:2.28-alpha'
 
         // NOTE: Do not place your application dependencies here; they belong

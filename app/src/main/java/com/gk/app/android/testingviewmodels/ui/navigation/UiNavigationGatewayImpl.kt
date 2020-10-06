@@ -16,7 +16,7 @@ class UiNavigationGatewayImpl : UiNavigationGateway {
 
     companion object {
         var activityObserver: Application.ActivityLifecycleCallbacks? = null
-        var resumedActivity: WeakReference<Activity> = WeakReference(null)
+        var resumedActivity: WeakReference<Activity?> = WeakReference(null)
     }
 
     init {
