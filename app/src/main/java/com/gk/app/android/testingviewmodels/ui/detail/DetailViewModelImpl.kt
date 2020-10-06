@@ -25,7 +25,6 @@ class DetailViewModelImpl @ViewModelInject constructor(
 
     override fun onCleared() {
         Log.i(javaClass.simpleName, "onCleared()")
-        detailUseCase.terminate()
         super.onCleared()
     }
     //endregion
