@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentFactory
 import androidx.fragment.app.viewModels
 import com.gk.app.android.testingviewmodels.R
 import dagger.hilt.android.AndroidEntryPoint
@@ -17,8 +18,22 @@ class MainFragment : Fragment() {
 
     private var mainViewModel: MainViewModel? = null
 
+    class Factory(
+        private val viewModel: MainViewModel? = null
+    ) : FragmentFactory() {
+        override fun instantiate(classLoader: ClassLoader, className: String): Fragment {
+            if (className == MainFragment::class.java.name) {
+                return MainFragment().apply {
+                    viewModel?.let { this.setViewModel(viewModel) }
+                }
+            }
+            return super.instantiate(classLoader, className)
+        }
+    }
+
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         Log.v(javaClass.simpleName, "onCreateView()")
@@ -60,8 +75,7 @@ class MainFragment : Fragment() {
         super.onViewStateRestored(savedInstanceState)
     }
 
-    @TestOnly
-    fun setViewModel(viewModel: MainViewModel) {
+    private fun setViewModel(viewModel: MainViewModel) {
         mainViewModel = viewModel
     }
 }
