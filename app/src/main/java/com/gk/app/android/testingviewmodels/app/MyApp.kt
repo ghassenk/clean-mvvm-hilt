@@ -11,5 +11,5 @@ class MyApp : Application() {
         Log.i(javaClass.simpleName, "onCreate()")
         super.onCreate()
     }
-    
+
 }

@@ -11,6 +11,9 @@ import com.gk.app.testingviewmodels.domain.navigation.UiNavigationGateway
 import com.gk.app.android.testingviewmodels.ui.detail.DetailActivity
 import java.lang.ref.WeakReference
 
+/**
+ * Implementation of UiNavigationGateway interface.
+ */
 class UiNavigationGatewayImpl(
     appContext: Context
 ) : UiNavigationGateway {
