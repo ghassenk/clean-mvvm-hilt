@@ -13,4 +13,6 @@ interface MainUseCase {
     }
 
     fun onButtonClicked(itemId: String)
+
+    fun terminate()
 }

@@ -3,6 +3,7 @@ package com.gk.app.testingviewmodels.domain.detail
 import com.gk.app.testingviewmodels.domain.navigation.UiNavigationGateway
 
 interface DetailUseCase {
+
     object Factory {
         fun get(
             uiNavigationGateway: UiNavigationGateway
@@ -13,4 +14,5 @@ interface DetailUseCase {
 
     suspend fun getItemDetails(itemId: String): List<Any>
 
+    fun terminate()
 }

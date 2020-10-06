@@ -20,6 +20,7 @@ class MainViewModelImpl @ViewModelInject constructor(
 
     override fun onCleared() {
         Log.i(javaClass.simpleName, "onCleared()")
+        mainUseCase.terminate()
         super.onCleared()
     }
     //endregion

@@ -11,4 +11,8 @@ internal class DetailUseCaseImpl(
     override suspend fun getItemDetails(itemId: String): List<Any> {
         return emptyList()
     }
+
+    override fun terminate() {
+
+    }
 }
