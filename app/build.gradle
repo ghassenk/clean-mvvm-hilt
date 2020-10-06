@@ -129,6 +129,10 @@ dependencies {
     androidTestImplementation "androidx.test.espresso:espresso-contrib:${versions.androidx_test_espresso_core}"
     androidTestImplementation "androidx.arch.core:core-testing:${versions.androidx_arch_core}"
     androidTestImplementation "androidx.constraintlayout:constraintlayout:${versions.constraint}"
-    debugImplementation "androidx.fragment:fragment-testing:${versions.androidx_fragment}"
+    debugImplementation ("androidx.fragment:fragment-testing:${versions.androidx_fragment}") {
+        // fix conflicts between espresso-core and fragment-testing
+        // https://github.com/android/android-test/issues/731
+        exclude group: 'androidx.test', module: 'monitor'
+    }
 
 }

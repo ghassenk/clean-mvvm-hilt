@@ -11,7 +11,6 @@ import androidx.fragment.app.viewModels
 import com.gk.app.android.testingviewmodels.R
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.main_fragment.*
-import org.jetbrains.annotations.TestOnly
 
 @AndroidEntryPoint
 class MainFragment : Fragment() {
@@ -24,7 +23,7 @@ class MainFragment : Fragment() {
         override fun instantiate(classLoader: ClassLoader, className: String): Fragment {
             if (className == MainFragment::class.java.name) {
                 return MainFragment().apply {
-                    viewModel?.let { this.setViewModel(viewModel) }
+                    viewModel?.let { this.mainViewModel = it }
                 }
             }
             return super.instantiate(classLoader, className)
@@ -75,7 +74,4 @@ class MainFragment : Fragment() {
         super.onViewStateRestored(savedInstanceState)
     }
 
-    private fun setViewModel(viewModel: MainViewModel) {
-        mainViewModel = viewModel
-    }
 }

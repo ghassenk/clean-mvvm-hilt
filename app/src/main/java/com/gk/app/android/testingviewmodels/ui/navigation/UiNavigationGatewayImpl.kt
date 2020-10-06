@@ -2,6 +2,7 @@ package com.gk.app.android.testingviewmodels.ui.navigation
 
 import android.app.Activity
 import android.app.Application
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -10,7 +11,9 @@ import com.gk.app.testingviewmodels.domain.navigation.UiNavigationGateway
 import com.gk.app.android.testingviewmodels.ui.detail.DetailActivity
 import java.lang.ref.WeakReference
 
-class UiNavigationGatewayImpl : UiNavigationGateway {
+class UiNavigationGatewayImpl(
+    appContext: Context
+) : UiNavigationGateway {
 
     // TODO can we have the same interface for this gateway when we use Single Activity?
 
@@ -40,8 +43,11 @@ class UiNavigationGatewayImpl : UiNavigationGateway {
                 override fun onActivitySaveInstanceState(activity: Activity, bundle: Bundle) {}
                 override fun onActivityDestroyed(activity: Activity) {}
             }
-
-            MyApp.appInstance.registerActivityLifecycleCallbacks(activityObserver)
+            if (appContext is Application){
+                appContext.registerActivityLifecycleCallbacks(activityObserver)
+            } else {
+                throw IllegalStateException("No Application Object Found!")
+            }
         }
     }
 
