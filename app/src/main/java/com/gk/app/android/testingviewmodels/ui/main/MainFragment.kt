@@ -18,10 +18,14 @@ class MainFragment(
 ) : Fragment() {
 
     class Factory(
-        private val mainViewModel: MainViewModel? = null
+        private val viewModel: MainViewModel? = null
     ) : FragmentFactory() {
         override fun instantiate(classLoader: ClassLoader, className: String): Fragment {
-            return MainFragment(mainViewModel)
+            return if (className == MainFragment::class.java.name) {
+                MainFragment(viewModel)
+            } else {
+                super.instantiate(classLoader, className)
+            }
         }
     }
 

@@ -34,6 +34,18 @@ android {
         jvmTarget = '1.8'
     }
 
+    android {
+        sourceSets {
+            String mockSrcDir = 'src/mock/java'
+            test {
+                java.srcDirs += mockSrcDir
+            }
+            androidTest {
+                java.srcDirs += mockSrcDir
+            }
+        }
+    }
+
     testOptions {
         tasks.withType(Test) {
             options {
