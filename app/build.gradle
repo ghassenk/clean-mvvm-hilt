@@ -34,6 +34,24 @@ android {
         jvmTarget = '1.8'
     }
 
+    testOptions {
+        tasks.withType(Test) {
+            options {
+                jvmArgs '-noverify'
+            }
+            testLogging {
+                // "full" in order to have an explicit stacktrace in the console output
+                exceptionFormat = 'full'
+            }
+            // "false" in order to have a "build failed" when a test fails
+            ignoreFailures = false
+        }
+
+        unitTests {
+            returnDefaultValues = true
+            includeAndroidResources = true
+        }
+    }
 }
 
 dependencies {
