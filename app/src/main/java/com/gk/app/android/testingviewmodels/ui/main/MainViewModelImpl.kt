@@ -5,11 +5,11 @@ import androidx.hilt.Assisted
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
-import com.gk.app.android.testingviewmodels.domain.MainUseCase
+import com.gk.app.testingviewmodels.domain.main.MainUseCase
 
 class MainViewModelImpl @ViewModelInject constructor(
     private val mainUseCase: MainUseCase,
-   @Assisted private val savedStateHandle: SavedStateHandle
+    @Assisted private val savedStateHandle: SavedStateHandle
 ) : MainViewModel, ViewModel() {
 
     //region Life Cycle

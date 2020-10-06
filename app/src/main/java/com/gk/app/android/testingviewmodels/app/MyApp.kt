@@ -1,4 +1,4 @@
-package com.gk.app.android.testingviewmodels.ui
+package com.gk.app.android.testingviewmodels.app
 
 import android.app.Application
 import android.util.Log

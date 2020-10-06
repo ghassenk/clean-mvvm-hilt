@@ -1,12 +1,11 @@
 package com.gk.app.android.testingviewmodels.ui.di
 
-import com.gk.app.android.testingviewmodels.domain.UiNavigationGateway
-import com.gk.app.android.testingviewmodels.ui.UiNavigationGatewayImpl
+import com.gk.app.testingviewmodels.domain.navigation.UiNavigationGateway
+import com.gk.app.android.testingviewmodels.ui.navigation.UiNavigationGatewayImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ApplicationComponent
-import dagger.hilt.android.components.FragmentComponent
 
 @Module
 @InstallIn(ApplicationComponent::class)

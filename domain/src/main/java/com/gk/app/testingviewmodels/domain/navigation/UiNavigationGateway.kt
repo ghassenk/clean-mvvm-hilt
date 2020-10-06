@@ -1,4 +1,4 @@
-package com.gk.app.android.testingviewmodels.domain
+package com.gk.app.testingviewmodels.domain.navigation
 
 interface UiNavigationGateway {
 

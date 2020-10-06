@@ -1,11 +1,12 @@
-package com.gk.app.android.testingviewmodels.ui
+package com.gk.app.android.testingviewmodels.ui.navigation
 
 import android.app.Activity
 import android.app.Application
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import com.gk.app.android.testingviewmodels.domain.UiNavigationGateway
+import com.gk.app.android.testingviewmodels.app.MyApp
+import com.gk.app.testingviewmodels.domain.navigation.UiNavigationGateway
 import com.gk.app.android.testingviewmodels.ui.detail.DetailActivity
 import java.lang.ref.WeakReference
 

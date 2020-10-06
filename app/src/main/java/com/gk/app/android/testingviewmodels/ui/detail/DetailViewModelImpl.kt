@@ -6,8 +6,7 @@ import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.gk.app.android.testingviewmodels.domain.DetailUseCase
-import com.gk.app.android.testingviewmodels.domain.DetailUseCaseImpl
+import com.gk.app.testingviewmodels.domain.detail.DetailUseCase
 import kotlinx.coroutines.launch
 
 class DetailViewModelImpl @ViewModelInject constructor(

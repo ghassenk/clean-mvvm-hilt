@@ -1,11 +1,10 @@
-package com.gk.app.android.testingviewmodels.domain
+package com.gk.app.testingviewmodels.domain.detail
 
-internal class DetailUseCaseImpl(
-    private val uiNavigationGateway: UiNavigationGateway
-) : DetailUseCase {
+import com.gk.app.testingviewmodels.domain.navigation.UiNavigationGateway
 
+interface DetailUseCase {
     object Factory {
-        internal var instance: DetailUseCase? = null
+        private var instance: DetailUseCase? = null
 
         fun get(
             uiNavigationGateway: UiNavigationGateway
@@ -21,13 +20,16 @@ internal class DetailUseCaseImpl(
                 instance = this
             }
         }
+
+        fun terminate() {
+            instance = null
+        }
     }
 
-    override fun terminate() {
-        Factory.instance = null
+    fun terminate() {
+        Factory.terminate()
     }
 
-    override suspend fun getItemDetails(itemId: String): List<Any> {
-        return emptyList()
-    }
+    suspend fun getItemDetails(itemId: String): List<Any>
+
 }
