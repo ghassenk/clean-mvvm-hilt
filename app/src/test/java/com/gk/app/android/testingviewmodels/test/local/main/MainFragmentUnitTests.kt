@@ -46,7 +46,6 @@ class MainFragmentUnitTests {
         // GIVEN - A resumed MainFragment
         customFragmentScenario.moveToState(Lifecycle.State.CREATED)
         customFragmentScenario.moveToState(Lifecycle.State.RESUMED)
-
         assert(fragment != null)
         assert(fragment!!.isResumed)
 

@@ -10,6 +10,7 @@ import dagger.hilt.android.AndroidEntryPoint
 /**
  * An Activity used for testing fragment to work around FragmentScenario issue
  * (here: https://dagger.dev/hilt/testing)
+ * This Activity is accessible only in debug source set.
  */
 
 @AndroidEntryPoint
