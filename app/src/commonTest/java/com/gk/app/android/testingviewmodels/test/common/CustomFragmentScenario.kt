@@ -6,12 +6,14 @@ import androidx.lifecycle.Lifecycle
 import androidx.test.core.app.ActivityScenario
 import com.gk.app.android.testingviewmodels.ui.test.TestFragmentActivity
 
+/**
+ * An FragmentScenario used for testing fragment to work around FragmentScenario issue
+ * (here: https://dagger.dev/hilt/testing)
+ */
 class CustomFragmentScenario private constructor() {
 
     private lateinit var activityScenario: ActivityScenario<TestFragmentActivity>
-    lateinit var activity: TestFragmentActivity
-
-    //    private val fragment: Fragment? by lazy { activity.fragment }
+    private lateinit var activity: TestFragmentActivity
     private var fragment: Fragment? = null
 
 

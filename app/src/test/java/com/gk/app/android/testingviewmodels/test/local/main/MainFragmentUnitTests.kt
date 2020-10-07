@@ -1,8 +1,6 @@
 package com.gk.app.android.testingviewmodels.test.local.main
 
-import androidx.fragment.app.testing.FragmentScenario
 import androidx.lifecycle.Lifecycle
-import androidx.test.core.app.ActivityScenario
 import androidx.test.espresso.Espresso
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
@@ -13,7 +11,6 @@ import com.gk.app.android.testingviewmodels.MainViewModelFake
 import com.gk.app.android.testingviewmodels.R
 import com.gk.app.android.testingviewmodels.test.common.CustomFragmentScenario
 import com.gk.app.android.testingviewmodels.ui.main.MainFragment
-import com.gk.app.android.testingviewmodels.ui.test.TestFragmentActivity
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import org.junit.Before
