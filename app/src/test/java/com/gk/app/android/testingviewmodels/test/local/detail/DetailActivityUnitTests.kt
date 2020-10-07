@@ -1,4 +1,4 @@
-package com.gk.app.android.testingviewmodels.detail
+package com.gk.app.android.testingviewmodels.test.local.detail
 
 import org.junit.Test
 

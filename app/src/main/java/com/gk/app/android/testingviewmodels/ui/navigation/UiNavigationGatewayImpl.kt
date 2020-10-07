@@ -46,6 +46,7 @@ class UiNavigationGatewayImpl(
                 override fun onActivitySaveInstanceState(activity: Activity, bundle: Bundle) {}
                 override fun onActivityDestroyed(activity: Activity) {}
             }
+
             if (appContext is Application){
                 appContext.registerActivityLifecycleCallbacks(activityObserver)
             } else {

@@ -1,4 +1,4 @@
-package com.gk.app.android.testingviewmodels.detail
+package com.gk.app.android.testingviewmodels.test.android.detail
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import org.junit.runner.RunWith

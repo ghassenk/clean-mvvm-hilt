@@ -27,4 +27,5 @@ class MainActivity : AppCompatActivity() {
         Log.v(javaClass.simpleName, "onDestroy()")
         super.onDestroy()
     }
+
 }

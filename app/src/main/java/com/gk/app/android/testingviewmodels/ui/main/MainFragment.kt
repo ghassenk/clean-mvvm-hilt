@@ -11,12 +11,17 @@ import androidx.fragment.app.viewModels
 import com.gk.app.android.testingviewmodels.R
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.main_fragment.*
+import org.jetbrains.annotations.TestOnly
 
 @AndroidEntryPoint
 class MainFragment : Fragment() {
 
     private var mainViewModel: MainViewModel? = null
 
+    /**
+     * Factory for creating this fragment with an injected ViewModel (otherwise it would be
+     * automatically injected by Hilt)
+     */
     class Factory(
         private val viewModel: MainViewModel? = null
     ) : FragmentFactory() {

@@ -1,31 +1,29 @@
-package com.gk.app.android.testingviewmodels.main
+package com.gk.app.android.testingviewmodels.test.android.main
 
-import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.Lifecycle.State
 import androidx.test.core.app.ActivityScenario
 import androidx.test.espresso.Espresso
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import androidx.test.filters.SmallTest
+import androidx.test.filters.LargeTest
 import com.gk.app.android.testingviewmodels.R
 import com.gk.app.android.testingviewmodels.ui.main.MainActivity
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
-import dagger.hilt.android.testing.HiltTestApplication
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.robolectric.annotation.Config
 
 /**
  * MainActivity is only responsible for showing MainFragment
  */
-@SmallTest
+@LargeTest
 @RunWith(AndroidJUnit4::class)
 @HiltAndroidTest
-class MainActivityUnitTests {
+class MainE2eAndroidTests {
 
     @get:Rule
     var hiltRule = HiltAndroidRule(this)
@@ -34,7 +32,6 @@ class MainActivityUnitTests {
 
     @Before
     fun setUp() {
-        hiltRule.inject()
         activityScenario = ActivityScenario.launch(MainActivity::class.java)
     }
 
@@ -43,8 +40,8 @@ class MainActivityUnitTests {
         // GIVEN - A MainActivity
 
         // WHEN - Activity is created then resumed, correct app version is shown
-        activityScenario.moveToState(Lifecycle.State.CREATED)
-        activityScenario.moveToState(Lifecycle.State.RESUMED)
+        activityScenario.moveToState(State.CREATED)
+        activityScenario.moveToState(State.RESUMED)
 
         // THEN
         Espresso.onView(withId(R.id.mainFragment)).check(matches(isDisplayed()))

@@ -1,4 +1,4 @@
-package com.gk.app.android.testingviewmodels
+package com.gk.app.android.testingviewmodels.test.android
 
 import android.app.Application
 import android.content.Context
