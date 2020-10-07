@@ -37,7 +37,7 @@ class CustomFragmentScenario private constructor() {
         }
     }
 
-    fun moveToState(state: Lifecycle.State) {
+    fun moveActivityToState(state: Lifecycle.State) {
         activityScenario = activityScenario.moveToState(state)
     }
 

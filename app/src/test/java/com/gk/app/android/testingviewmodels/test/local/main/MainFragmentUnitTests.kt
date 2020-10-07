@@ -44,8 +44,8 @@ class MainFragmentUnitTests {
     @Test
     fun mainButton_isDisplayed() {
         // GIVEN - A resumed MainFragment
-        customFragmentScenario.moveToState(Lifecycle.State.CREATED)
-        customFragmentScenario.moveToState(Lifecycle.State.RESUMED)
+        customFragmentScenario.moveActivityToState(Lifecycle.State.CREATED)
+        customFragmentScenario.moveActivityToState(Lifecycle.State.RESUMED)
         assert(fragment != null)
         assert(fragment!!.isResumed)
 
