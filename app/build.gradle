@@ -38,11 +38,14 @@ android {
     android {
         sourceSets {
             String mockSrcDir = 'src/mock/java'
+            String commonSrcDir = 'src/commonTest/java'
             test {
                 java.srcDirs += mockSrcDir
+                java.srcDirs += commonSrcDir
             }
             androidTest {
                 java.srcDirs += mockSrcDir
+                java.srcDirs += commonSrcDir
             }
         }
     }
