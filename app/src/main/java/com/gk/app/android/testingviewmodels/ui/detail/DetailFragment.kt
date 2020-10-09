@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentFactory
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
 import com.gk.app.android.testingviewmodels.R
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -30,7 +29,7 @@ class DetailFragment(
         savedInstanceState: Bundle?
     ): View {
         Log.v(javaClass.simpleName, "onCreateView()")
-        return inflater.inflate(R.layout.detail_fragment, container, false)
+        return inflater.inflate(R.layout.fragment_detail, container, false)
     }
 
     override fun onDestroy() {

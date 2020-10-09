@@ -13,7 +13,7 @@ class DetailActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         Log.v(javaClass.simpleName, "onCreate()")
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.main_activity)
+        setContentView(R.layout.activity_main)
 
         if (savedInstanceState == null) {
             val fragment = DetailFragment.Factory().instantiate(

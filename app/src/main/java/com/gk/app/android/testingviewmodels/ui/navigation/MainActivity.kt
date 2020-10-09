@@ -1,4 +1,4 @@
-package com.gk.app.android.testingviewmodels.ui.main
+package com.gk.app.android.testingviewmodels.ui.navigation
 
 import android.os.Bundle
 import android.util.Log
@@ -14,13 +14,7 @@ class MainActivity : AppCompatActivity() {
 
         super.onCreate(savedInstanceState)
 
-        setContentView(R.layout.main_activity)
-
-        if (savedInstanceState == null) {
-            supportFragmentManager.beginTransaction()
-                .replace(R.id.container, MainFragment::class.java, intent.extras)
-                .commitNow()
-        }
+        setContentView(R.layout.activity_main)
     }
 
     override fun onDestroy() {

@@ -1,8 +1,8 @@
 package com.gk.app.android.testingviewmodels.app.di
 
 import android.content.Context
-import com.gk.app.testingviewmodels.domain.navigation.UiNavigationGateway
-import com.gk.app.android.testingviewmodels.ui.navigation.UiNavigationGatewayImpl
+import com.gk.app.android.testingviewmodels.ui.navigation.ScreensGatewayNavGraphImpl
+import com.gk.app.testingviewmodels.domain.navigation.ScreensGateway
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -13,10 +13,12 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 @InstallIn(ApplicationComponent::class)
 object UiModule {
 
-    private var uiNavigationGateway: UiNavigationGateway? = null
+    private var screensGateway: ScreensGateway? = null
 
     @Provides
-    fun provideUiNavigationGateway(@ApplicationContext appContext: Context): UiNavigationGateway {
-        return uiNavigationGateway ?: UiNavigationGatewayImpl(appContext)
+    fun provideUiNavigationGateway(@ApplicationContext appContext: Context): ScreensGateway {
+        // Use activity based navigation or NavGraph
+        // return screensGateway ?: ScreensGatewayActivityImpl(appContext)
+        return screensGateway ?: ScreensGatewayNavGraphImpl(appContext)
     }
 }

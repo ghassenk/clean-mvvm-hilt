@@ -1,14 +1,14 @@
 package com.gk.app.testingviewmodels.domain.detail
 
-import com.gk.app.testingviewmodels.domain.navigation.UiNavigationGateway
+import com.gk.app.testingviewmodels.domain.navigation.ScreensGateway
 
 interface DetailUseCase {
 
     object Factory {
         fun get(
-            uiNavigationGateway: UiNavigationGateway
+            screensGateway: ScreensGateway
         ): DetailUseCase {
-            return DetailUseCaseImpl(uiNavigationGateway)
+            return DetailUseCaseImpl(screensGateway)
         }
     }
 

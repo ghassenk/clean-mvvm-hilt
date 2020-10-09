@@ -1,8 +1,8 @@
 package com.gk.app.android.testingviewmodels
 
-import com.gk.app.android.testingviewmodels.ui.main.MainViewModel
+import com.gk.app.android.testingviewmodels.ui.home.HomeViewModel
 
-open class MainViewModelSpy : MainViewModel {
+open class HomeViewModelSpy : HomeViewModel {
 
     var isButtonClicked = false
     var itemId: String? = null

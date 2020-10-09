@@ -3,8 +3,10 @@ package com.gk.app.testingviewmodels.domain.navigation
 /**
  * Interface for navigating between the application's screens
  */
-interface UiNavigationGateway {
+interface ScreensGateway {
 
-    fun startDetailScreen(itemId:String)
+    fun showHomeScreen()
+
+    fun showDetailScreen(itemId:String)
 
 }

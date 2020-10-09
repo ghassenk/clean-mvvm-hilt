@@ -1,8 +1,8 @@
 package com.gk.app.android.testingviewmodels.app.di
 
 import com.gk.app.testingviewmodels.domain.detail.DetailUseCase
-import com.gk.app.testingviewmodels.domain.main.MainUseCase
-import com.gk.app.testingviewmodels.domain.navigation.UiNavigationGateway
+import com.gk.app.testingviewmodels.domain.home.HomeUseCase
+import com.gk.app.testingviewmodels.domain.navigation.ScreensGateway
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -13,12 +13,12 @@ import dagger.hilt.android.components.ApplicationComponent
 object DomainModule {
 
     @Provides
-    fun provideMainUseCase(uiNavigationGateway: UiNavigationGateway): MainUseCase {
-        return MainUseCase.Factory.get(uiNavigationGateway)
+    fun provideHomeUseCase(screensGateway: ScreensGateway): HomeUseCase {
+        return HomeUseCase.Factory.get(screensGateway)
     }
 
     @Provides
-    fun provideDetailUseCase(uiNavigationGateway: UiNavigationGateway): DetailUseCase {
-        return DetailUseCase.Factory.get(uiNavigationGateway)
+    fun provideDetailUseCase(screensGateway: ScreensGateway): DetailUseCase {
+        return DetailUseCase.Factory.get(screensGateway)
     }
 }

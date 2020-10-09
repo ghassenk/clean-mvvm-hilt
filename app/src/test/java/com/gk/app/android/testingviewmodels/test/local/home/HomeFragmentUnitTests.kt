@@ -1,4 +1,4 @@
-package com.gk.app.android.testingviewmodels.test.local.main
+package com.gk.app.android.testingviewmodels.test.local.home
 
 import androidx.lifecycle.Lifecycle
 import androidx.test.espresso.Espresso
@@ -7,10 +7,10 @@ import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.SmallTest
-import com.gk.app.android.testingviewmodels.MainViewModelFake
+import com.gk.app.android.testingviewmodels.HomeViewModelFake
 import com.gk.app.android.testingviewmodels.R
 import com.gk.app.android.testingviewmodels.test.common.CustomFragmentScenario
-import com.gk.app.android.testingviewmodels.ui.main.MainFragment
+import com.gk.app.android.testingviewmodels.ui.home.HomeFragment
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import org.junit.Before
@@ -21,7 +21,7 @@ import org.junit.runner.RunWith
 @SmallTest
 @RunWith(AndroidJUnit4::class)
 @HiltAndroidTest
-class MainFragmentUnitTests {
+class HomeFragmentUnitTests {
 
     @get:Rule
     var hiltRule = HiltAndroidRule(this)
@@ -30,15 +30,15 @@ class MainFragmentUnitTests {
     // activity: use FragmentScenario when fixed
 
     private lateinit var customFragmentScenario: CustomFragmentScenario
-    private var fragment: MainFragment? = null
+    private var fragment: HomeFragment? = null
 
     @Before
     fun setUp() {
         customFragmentScenario = CustomFragmentScenario.launch(
-            fragmentFactory = MainFragment.Factory(MainViewModelFake()),
-            fragmentClass = MainFragment::class.java
+            fragmentFactory = HomeFragment.Factory(HomeViewModelFake()),
+            fragmentClass = HomeFragment::class.java
         )
-        customFragmentScenario.onFragment { fragment = it as MainFragment}
+        customFragmentScenario.onFragment { fragment = it as HomeFragment }
     }
 
     @Test

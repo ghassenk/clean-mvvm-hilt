@@ -1,4 +1,4 @@
-package com.gk.app.android.testingviewmodels.test.android.main
+package com.gk.app.android.testingviewmodels.test.android.navigation
 
 import androidx.lifecycle.Lifecycle.State
 import androidx.test.core.app.ActivityScenario
@@ -9,7 +9,7 @@ import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.LargeTest
 import com.gk.app.android.testingviewmodels.R
-import com.gk.app.android.testingviewmodels.ui.main.MainActivity
+import com.gk.app.android.testingviewmodels.ui.navigation.MainActivity
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import org.junit.Before
@@ -36,7 +36,7 @@ class MainE2eAndroidTests {
     }
 
     @Test
-    fun mainFragment_isDisplayed() {
+    fun homeFragment_isDisplayed() {
         // GIVEN - A MainActivity
 
         // WHEN - Activity is created then resumed, correct app version is shown
@@ -44,6 +44,6 @@ class MainE2eAndroidTests {
         activityScenario.moveToState(State.RESUMED)
 
         // THEN
-        Espresso.onView(withId(R.id.mainFragment)).check(matches(isDisplayed()))
+        Espresso.onView(withId(R.id.homeFragment)).check(matches(isDisplayed()))
     }
 }
