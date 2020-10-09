@@ -1,3 +1,4 @@
+include ':webservice'
 include ':domain'
 include ':app'
 rootProject.name = "TestingViewModels"

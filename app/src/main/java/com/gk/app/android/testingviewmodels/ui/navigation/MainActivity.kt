@@ -15,6 +15,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_main)
+
+
+        //TODO temp
+        // if smart phone, the home fragment containing a list of items
     }
 
     override fun onDestroy() {

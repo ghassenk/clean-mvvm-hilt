@@ -42,6 +42,7 @@ buildscript {
                 support_legacy: '1.0.0',
                 truth: '1.0.1'
         ]
+        kotlin_version = '1.4.10'
     }
 
     repositories {

@@ -9,7 +9,6 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class DetailActivity : AppCompatActivity() {
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         Log.v(javaClass.simpleName, "onCreate()")
         super.onCreate(savedInstanceState)

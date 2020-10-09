@@ -98,6 +98,7 @@ dependencies {
     implementation "androidx.navigation:navigation-ui-ktx:2.3.0"
     // Feature module Support
     implementation "androidx.navigation:navigation-dynamic-features-fragment:2.3.0"
+    implementation project(path: ':webservice')
     // Testing Navigation
     androidTestImplementation "androidx.navigation:navigation-testing:2.3.0"
 

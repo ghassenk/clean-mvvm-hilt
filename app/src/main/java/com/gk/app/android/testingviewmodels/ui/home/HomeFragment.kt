@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentFactory
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.gk.app.android.testingviewmodels.R
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_home.*
@@ -60,22 +61,20 @@ class HomeFragment : Fragment() {
 
         Log.i(javaClass.simpleName, "viewModel=$homeViewModel")
 
-        mainBtn.setOnClickListener { homeViewModel?.onButtonClicked("someId") }
-    }
+        homeRecycler.layoutManager = LinearLayoutManager(homeRecycler.context)
+        homeRecycler.adapter = ItemRecyclerAdapter()
+        homeRecycler.setOnClickListener { homeViewModel?.onItemClick("someId") }
 
-    override fun onSaveInstanceState(outState: Bundle) {
-        Log.d(javaClass.simpleName, "onSaveInstanceState()")
+        homeViewModel?.bindItems(viewLifecycleOwner) {
 
-        //TODO use view model to save instance state
-        //outState.putCharSequence("test", "Some saved data")
+            Log.i(javaClass.simpleName, "received ${it.size} items!")
 
-        super.onSaveInstanceState(outState)
-    }
 
-    override fun onViewStateRestored(savedInstanceState: Bundle?) {
-        Log.d(javaClass.simpleName, "onViewStateRestored() savedInstanceState=$savedInstanceState")
+            (homeRecycler.adapter as ItemRecyclerAdapter).updateItems(it)
 
-        super.onViewStateRestored(savedInstanceState)
+            Log.i(javaClass.simpleName, "adapter count ${homeRecycler.adapter?.itemCount} items!")
+
+        }
     }
 
 }

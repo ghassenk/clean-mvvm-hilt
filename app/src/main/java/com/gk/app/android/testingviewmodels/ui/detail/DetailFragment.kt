@@ -50,13 +50,4 @@ class DetailFragment(
         Log.i(javaClass.simpleName, "viewModel=${detailViewModel}")
     }
 
-    override fun onSaveInstanceState(outState: Bundle) {
-        Log.d(javaClass.simpleName, "onSaveInstanceState()")
-        super.onSaveInstanceState(outState)
-    }
-
-    override fun onViewStateRestored(savedInstanceState: Bundle?) {
-        Log.d(javaClass.simpleName, "onViewStateRestored() savedInstanceState=$savedInstanceState")
-        super.onViewStateRestored(savedInstanceState)
-    }
 }

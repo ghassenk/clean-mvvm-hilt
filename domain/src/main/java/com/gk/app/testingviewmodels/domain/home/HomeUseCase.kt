@@ -6,13 +6,16 @@ interface HomeUseCase {
 
     object Factory {
         fun get(
-            screensGateway: ScreensGateway
+            screensGateway: ScreensGateway,
+            itemsGateway: ItemsGateway
         ): HomeUseCase {
-            return HomeUseCaseImpl(screensGateway)
+            return HomeUseCaseImpl(screensGateway, itemsGateway)
         }
     }
 
-    fun onButtonClicked(itemId: String)
+    fun onItemClick(itemId: String)
+
+    suspend fun getHomeItems() : List<Item>
 
     fun terminate()
 }

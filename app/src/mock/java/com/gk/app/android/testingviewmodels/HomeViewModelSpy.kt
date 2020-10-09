@@ -7,7 +7,7 @@ open class HomeViewModelSpy : HomeViewModel {
     var isButtonClicked = false
     var itemId: String? = null
 
-    override fun onButtonClicked(itemId: String) {
+    override fun onItemClick(itemId: String) {
         isButtonClicked = true
         this.itemId = itemId
     }

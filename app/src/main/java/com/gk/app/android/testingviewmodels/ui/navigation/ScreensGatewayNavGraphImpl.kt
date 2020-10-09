@@ -39,7 +39,7 @@ class ScreensGatewayNavGraphImpl(
                     resumedActivity = WeakReference(activity)
                     if (activity is MainActivity) {
                         navController =
-                            WeakReference(activity.findNavController(R.id.navHostFragment))
+                            WeakReference(activity.findNavController(R.id.navHostFragment1))
                     }
                 }
 
@@ -79,4 +79,5 @@ class ScreensGatewayNavGraphImpl(
             ?.navigate(R.id.navigation_detail, Bundle().apply { this.putString("itemId", itemId) })
             ?: throw IllegalStateException("No NavController Found!")
     }
+
 }
