@@ -18,4 +18,9 @@ class NavigationViewModelImpl @ViewModelInject constructor(
     override fun startNavigation() {
         navigationUseCase.startNavigation()
     }
+
+    override fun onCleared() {
+        navigationUseCase.terminate()
+        super.onCleared()
+    }
 }

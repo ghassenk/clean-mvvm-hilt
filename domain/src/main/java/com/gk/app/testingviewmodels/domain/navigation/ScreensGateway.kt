@@ -9,5 +9,5 @@ interface ScreensGateway {
 
     fun showDetailScreen(itemId:String)
 
-    //fun terminate()
+    fun terminate()
 }

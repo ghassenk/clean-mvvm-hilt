@@ -9,6 +9,6 @@ class NavigationUseCaseImpl(
     }
 
     override fun terminate() {
-
+        screensGateway.terminate()
     }
 }

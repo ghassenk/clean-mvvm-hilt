@@ -48,11 +48,12 @@ class ScreensGatewayNavGraphImpl(
         }
     }
 
-//    override fun terminate() {
-//        application.get()?.unregisterActivityLifecycleCallbacks(activityObserver)
-//        activityObserver = null
-//        application = WeakReference(null)
-//    }
+    override fun terminate() {
+        application.get()?.unregisterActivityLifecycleCallbacks(activityObserver)
+        activityObserver = null
+        application = WeakReference(null)
+        resumedActivity = WeakReference(null)
+    }
 
     //region Screens
     override fun showHomeScreen() {
