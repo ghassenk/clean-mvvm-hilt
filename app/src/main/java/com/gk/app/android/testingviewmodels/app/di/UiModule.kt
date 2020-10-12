@@ -1,7 +1,7 @@
 package com.gk.app.android.testingviewmodels.app.di
 
 import android.content.Context
-import com.gk.app.android.testingviewmodels.ui.navigation.ScreensGatewayNavGraphImpl
+import com.gk.app.android.testingviewmodels.ui.navigation.gateway.ScreensGatewayNavGraphImpl
 import com.gk.app.testingviewmodels.domain.navigation.ScreensGateway
 import dagger.Module
 import dagger.Provides
@@ -17,8 +17,7 @@ object UiModule {
 
     @Provides
     fun provideUiNavigationGateway(@ApplicationContext appContext: Context): ScreensGateway {
-        // Use activity based navigation or NavGraph
-        // return screensGateway ?: ScreensGatewayActivityImpl(appContext)
-        return screensGateway ?: ScreensGatewayNavGraphImpl(appContext)
+        // Use based navigation on NavGraph (single/double pane)
+        return ScreensGatewayNavGraphImpl(appContext)
     }
 }

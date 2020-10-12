@@ -22,11 +22,12 @@ class ItemRecyclerAdapter(
 ) : RecyclerView.Adapter<ItemViewHolder>() {
 
     private val _items = ArrayList(items)
+    private var selectedPosition: Int? = null
 
-    fun updateItems(items: List<Item>) {
+    fun updateItems(items: List<Item>, selectedPosition: Int?) {
         _items.clear()
         _items.addAll(items)
-        Log.i(javaClass.simpleName, "updating with ${items.size} items!")
+        this.selectedPosition = selectedPosition
         notifyDataSetChanged()
     }
 
@@ -39,6 +40,7 @@ class ItemRecyclerAdapter(
 
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
         holder.title = "Item $position"
+        holder.itemView.isSelected = (position == selectedPosition)
     }
 
     override fun getItemCount(): Int {

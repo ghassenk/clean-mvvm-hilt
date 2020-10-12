@@ -1,4 +1,4 @@
-package com.gk.app.android.testingviewmodels.ui.navigation
+package com.gk.app.android.testingviewmodels.ui.navigation.gateway
 
 import android.app.Activity
 import android.app.Application

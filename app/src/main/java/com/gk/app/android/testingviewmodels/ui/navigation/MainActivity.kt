@@ -15,10 +15,16 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_main)
+    }
 
+    override fun onResume() {
+        Log.v(javaClass.simpleName, "onResume()")
+        super.onResume()
+    }
 
-        //TODO temp
-        // if smart phone, the home fragment containing a list of items
+    override fun onPause() {
+        Log.v(javaClass.simpleName, "onPause()")
+        super.onPause()
     }
 
     override fun onDestroy() {

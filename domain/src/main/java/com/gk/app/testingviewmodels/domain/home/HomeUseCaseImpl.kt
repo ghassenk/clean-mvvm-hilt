@@ -7,7 +7,7 @@ internal class HomeUseCaseImpl(
     private val itemsGateway: ItemsGateway
 ) : HomeUseCase {
 
-    override fun onItemClick(itemId: String) {
+    override fun openItemDetails(itemId: String) {
         // Solution 1 call a UI gateway to start the actual screen and pass it the itemId
         screensGateway.showDetailScreen(itemId)
     }

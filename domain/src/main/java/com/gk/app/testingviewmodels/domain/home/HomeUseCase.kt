@@ -13,7 +13,7 @@ interface HomeUseCase {
         }
     }
 
-    fun onItemClick(itemId: String)
+    fun openItemDetails(itemId: String)
 
     suspend fun getHomeItems() : List<Item>
 

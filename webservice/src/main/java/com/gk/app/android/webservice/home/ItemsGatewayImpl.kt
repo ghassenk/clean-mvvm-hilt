@@ -6,7 +6,12 @@ import com.gk.app.testingviewmodels.domain.home.ItemsGateway
 class ItemsGatewayImpl : ItemsGateway {
 
     override suspend fun getItems(): List<Item> {
-        return MutableList(20) { object : Item {} }
+        return MutableList(20) {
+            object : Item {
+                override val id: String
+                    get() = toString()
+            }
+        }
     }
 
     override suspend fun getItemDetail(itemId: String): List<Any> {

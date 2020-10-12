@@ -61,19 +61,17 @@ class HomeFragment : Fragment() {
 
         Log.i(javaClass.simpleName, "viewModel=$homeViewModel")
 
-        homeRecycler.layoutManager = LinearLayoutManager(homeRecycler.context)
-        homeRecycler.adapter = ItemRecyclerAdapter()
-        homeRecycler.setOnClickListener { homeViewModel?.onItemClick("someId") }
+        homeViewModel?.let { viewModel ->
+            val adapter = ItemRecyclerAdapter()
+            homeRecycler.layoutManager = LinearLayoutManager(homeRecycler.context)
+            homeRecycler.adapter = adapter
+            homeRecycler.setOnClickListener { viewModel.onItemClicked("someId") }
 
-        homeViewModel?.bindItems(viewLifecycleOwner) {
-
-            Log.i(javaClass.simpleName, "received ${it.size} items!")
-
-
-            (homeRecycler.adapter as ItemRecyclerAdapter).updateItems(it)
-
-            Log.i(javaClass.simpleName, "adapter count ${homeRecycler.adapter?.itemCount} items!")
-
+            viewModel.bindToView(
+                viewOwner = viewLifecycleOwner
+            ) { items, selectedPosition ->
+                adapter.updateItems(items, selectedPosition)
+            }
         }
     }
 

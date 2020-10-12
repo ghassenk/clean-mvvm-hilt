@@ -13,9 +13,12 @@ class HomeViewModelImpl @ViewModelInject constructor(
     @Assisted private val savedStateHandle: SavedStateHandle
 ) : HomeViewModel, ViewModel() {
 
+    private var autoSelect: Boolean? = null //TODO also add save/restore current selection
+
     //region Life Cycle
     init {
         Log.i(javaClass.simpleName, "init()")
+        autoSelect = savedStateHandle.get<Boolean>("autoSelect")
     }
 
     override fun onCleared() {
@@ -25,15 +28,18 @@ class HomeViewModelImpl @ViewModelInject constructor(
     }
     //endregion
 
-
     //region Bindings
     private val items: MutableLiveData<List<Item>> by lazy { MutableLiveData() }
+    private var selectedPosition: Int? = null
 
-    override fun bindItems(viewOwner: Any, updateLambda: (List<Item>) -> Unit) {
+    override fun bindToView(
+        viewOwner: Any,
+        onItemsUpdate: (items: List<Item>, selectedPosition: Int?) -> Unit
+    ) {
         if (viewOwner is LifecycleOwner) {
             items.removeObservers(viewOwner)
             items.observe(viewOwner, Observer {
-                updateLambda(it)
+                onItemsUpdate(it, selectedPosition)
             })
             refresh()
         }
@@ -44,16 +50,29 @@ class HomeViewModelImpl @ViewModelInject constructor(
         viewModelScope.launch {
             val result = homeUseCase.getHomeItems()
             Log.i(javaClass.simpleName, "received ${result.size} items!")
+
+            if (autoSelect == true) {
+                if (result.isNotEmpty()) {
+                    selectedPosition = 0
+                    autoSelect = false
+                    homeUseCase.openItemDetails(result[0].id)
+                }
+            } else {
+                selectedPosition = null
+            }
+
             items.value = result
         }
     }
     //endregion
 
     //region User Inputs
-    override fun onItemClick(itemId: String) {
+    override fun onItemClicked(itemId: String) {
         Log.v(javaClass.simpleName, "onButtonClicked() itemId=$itemId")
 
-        homeUseCase.onItemClick(itemId)
+        homeUseCase.openItemDetails(itemId)
     }
+
     //endregion
+
 }
