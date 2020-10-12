@@ -15,7 +15,11 @@ internal class SinglePaneBehavior(
     private var activity: WeakReference<Activity?> = WeakReference(activity)
     private val singleNavController: NavController?
         get() {
-            return activity.get()?.findNavController(R.id.navHostFragment)
+            return try {
+                activity.get()?.findNavController(R.id.navHostFragment)
+            } catch (e:Exception) {
+                null
+            }
         }
 
     override fun setResumedActivity(resumedActivity: WeakReference<Activity?>) {
@@ -25,14 +29,18 @@ internal class SinglePaneBehavior(
     //region Screens
     override fun showHomeScreen() {
         singleNavController?.navigate(R.id.navigation_home)
-            ?: throw IllegalStateException("No NavController Found!")
+            //?: throw IllegalStateException("No NavController Found!")
     }
 
     override fun showDetailScreen(itemId: String) {
         singleNavController?.navigate(
                 R.id.navigation_detail,
                 Bundle().apply { this.putString("itemId", itemId) })
-            ?: throw IllegalStateException("No NavController Found!")
+            //?: throw IllegalStateException("No NavController Found!")
+    }
+
+    override fun terminate() {
+
     }
     //endregion
 

@@ -13,12 +13,12 @@ class HomeViewModelImpl @ViewModelInject constructor(
     @Assisted private val savedStateHandle: SavedStateHandle
 ) : HomeViewModel, ViewModel() {
 
-    private var autoSelect: Boolean? = null //TODO also add save/restore current selection
+    //private var autoSelect: Boolean? = null //TODO also add save/restore current selection
 
     //region Life Cycle
     init {
-        autoSelect = savedStateHandle.get<Boolean>("autoSelect")
-        Log.i(javaClass.simpleName, "init() autoSelect=$autoSelect")
+        //autoSelect = savedStateHandle.get<Boolean>("autoSelect")
+        Log.v(javaClass.simpleName, "init()")
     }
 
     override fun onCleared() {
@@ -36,6 +36,8 @@ class HomeViewModelImpl @ViewModelInject constructor(
         viewOwner: Any,
         onItemsUpdate: (items: List<Item>, selectedPosition: Int?) -> Unit
     ) {
+        Log.v(javaClass.simpleName, "bindToView()")
+
         if (viewOwner is LifecycleOwner) {
             items.removeObservers(viewOwner)
             items.observe(viewOwner, Observer {
@@ -46,15 +48,16 @@ class HomeViewModelImpl @ViewModelInject constructor(
     }
 
     private fun refresh() {
-        Log.v(javaClass.simpleName, "refresh()")
+//        Log.v(javaClass.simpleName, "refresh()")
+        Log.v(javaClass.simpleName, "refresh() autoSelect=${savedStateHandle.get<Boolean>("autoSelect")}")
         viewModelScope.launch {
             val result = homeUseCase.getHomeItems()
             Log.i(javaClass.simpleName, "received ${result.size} items!")
-
+            val autoSelect = savedStateHandle.get<Boolean>("autoSelect")
             if (autoSelect == true) {
                 if (result.isNotEmpty()) {
                     selectedPosition = 0
-                    autoSelect = false
+                    savedStateHandle["autoSelect"] = false
                     homeUseCase.openItemDetails(result[0].id)
                 }
             } else {

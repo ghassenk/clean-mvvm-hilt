@@ -66,4 +66,8 @@ class ScreensGatewayActivityImpl(
             })
         } ?: throw IllegalStateException("No Resumed Activity Found!")
     }
+
+    override fun terminate() {
+        TODO("Not yet implemented")
+    }
 }

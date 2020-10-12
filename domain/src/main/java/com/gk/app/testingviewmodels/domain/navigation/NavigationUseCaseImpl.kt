@@ -1,6 +1,6 @@
 package com.gk.app.testingviewmodels.domain.navigation
 
-class NavigationUseCaseImpl(
+internal class NavigationUseCaseImpl(
     private val screensGateway: ScreensGateway
 ) : NavigationUseCase {
 

@@ -81,8 +81,10 @@ class ScreensGatewayNavGraphImpl(
     private val behavior: MultiPaneBehavior
         get() {
             return if (isDualPane()) {
+                Log.i(javaClass.simpleName, "Switching to DUAL Pane Behavior...")
                 dualPaneBehavior
             } else {
+                Log.i(javaClass.simpleName, "Switching to SINGLE Pane Behavior...")
                 singlePaneBehavior
             }
         }

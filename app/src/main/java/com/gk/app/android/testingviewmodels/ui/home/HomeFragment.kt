@@ -7,7 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentFactory
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.SavedStateHandle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.gk.app.android.testingviewmodels.R
 import dagger.hilt.android.AndroidEntryPoint
@@ -57,6 +59,7 @@ class HomeFragment : Fragment() {
         if (homeViewModel == null) {
             val vm: HomeViewModelImpl by viewModels()
             homeViewModel = vm
+
         }
 
         Log.i(javaClass.simpleName, "viewModel=$homeViewModel")
