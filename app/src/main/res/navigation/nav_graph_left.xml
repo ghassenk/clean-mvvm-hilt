@@ -3,7 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/leftNavGraph"
-    app:startDestination="@+id/navigation_home">
+    app:startDestination="@+id/navigation_loading">
+
+    <fragment
+        android:id="@+id/navigation_loading"
+        android:name="com.gk.app.android.testingviewmodels.ui.navigation.LoadingFragment"
+        android:label="@string/title_loading"
+        tools:layout="@layout/fragment_loading" />
 
     <fragment
         android:id="@+id/navigation_home"

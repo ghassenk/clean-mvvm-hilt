@@ -40,7 +40,7 @@ class HomeFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        Log.v(javaClass.simpleName, "onCreateView()")
+        Log.v(javaClass.simpleName, "onCreateView() arguments=$arguments")
         return inflater.inflate(R.layout.fragment_home, container, false)
     }
 

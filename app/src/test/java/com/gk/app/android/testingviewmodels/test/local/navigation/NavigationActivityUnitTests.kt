@@ -9,7 +9,7 @@ import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.SmallTest
 import com.gk.app.android.testingviewmodels.R
-import com.gk.app.android.testingviewmodels.ui.navigation.MainActivity
+import com.gk.app.android.testingviewmodels.ui.navigation.NavigationActivity
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import org.junit.Before
@@ -23,16 +23,16 @@ import org.junit.runner.RunWith
 @SmallTest
 @RunWith(AndroidJUnit4::class)
 @HiltAndroidTest
-class MainActivityUnitTests {
+class NavigationActivityUnitTests {
 
     @get:Rule
     var hiltRule = HiltAndroidRule(this)
 
-    private lateinit var activityScenario: ActivityScenario<MainActivity>
+    private lateinit var activityScenario: ActivityScenario<NavigationActivity>
 
     @Before
     fun setUp() {
-        activityScenario = ActivityScenario.launch(MainActivity::class.java)
+        activityScenario = ActivityScenario.launch(NavigationActivity::class.java)
     }
 
     @Test

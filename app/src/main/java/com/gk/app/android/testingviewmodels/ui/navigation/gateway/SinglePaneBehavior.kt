@@ -5,42 +5,35 @@ import android.os.Bundle
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import com.gk.app.android.testingviewmodels.R
-import com.gk.app.android.testingviewmodels.ui.navigation.MainActivity
+import com.gk.app.android.testingviewmodels.ui.navigation.NavigationActivity
 import java.lang.ref.WeakReference
 
-internal class SinglePaneBehavior : MultiPaneBehavior {
-    private var resumedActivity: WeakReference<Activity?> = WeakReference(null)
-    private var singleNavController: WeakReference<NavController?> = WeakReference(null)
+internal class SinglePaneBehavior(
+    activity: Activity?
+) : MultiPaneBehavior {
 
-    //region Lifecycle
-    override fun onActivityResumed(activity: Activity) {
-        if (activity is MainActivity) {
-            singleNavController =
-                WeakReference(activity.findNavController(R.id.navHostFragment))
+    private var activity: WeakReference<Activity?> = WeakReference(activity)
+    private val singleNavController: NavController?
+        get() {
+            return activity.get()?.findNavController(R.id.navHostFragment)
         }
+
+    override fun setResumedActivity(resumedActivity: WeakReference<Activity?>) {
+        activity = resumedActivity
     }
 
-    override fun onActivityPaused(activity: Activity) {
-        if (resumedActivity.get() == activity) {
-            resumedActivity = WeakReference(null)
-            if (activity is MainActivity) {
-                singleNavController = WeakReference(null)
-            }
-        }
-    }
-    //endregion
-
-
+    //region Screens
     override fun showHomeScreen() {
-        singleNavController.get()?.navigate(R.id.navigation_home)
+        singleNavController?.navigate(R.id.navigation_home)
             ?: throw IllegalStateException("No NavController Found!")
     }
 
     override fun showDetailScreen(itemId: String) {
-        singleNavController.get()
-            ?.navigate(
+        singleNavController?.navigate(
                 R.id.navigation_detail,
                 Bundle().apply { this.putString("itemId", itemId) })
             ?: throw IllegalStateException("No NavController Found!")
     }
+    //endregion
+
 }

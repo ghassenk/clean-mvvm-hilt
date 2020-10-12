@@ -17,8 +17,8 @@ class HomeViewModelImpl @ViewModelInject constructor(
 
     //region Life Cycle
     init {
-        Log.i(javaClass.simpleName, "init()")
         autoSelect = savedStateHandle.get<Boolean>("autoSelect")
+        Log.i(javaClass.simpleName, "init() autoSelect=$autoSelect")
     }
 
     override fun onCleared() {

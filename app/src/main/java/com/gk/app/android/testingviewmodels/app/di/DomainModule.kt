@@ -3,6 +3,7 @@ package com.gk.app.android.testingviewmodels.app.di
 import com.gk.app.testingviewmodels.domain.detail.DetailUseCase
 import com.gk.app.testingviewmodels.domain.home.HomeUseCase
 import com.gk.app.testingviewmodels.domain.home.ItemsGateway
+import com.gk.app.testingviewmodels.domain.navigation.NavigationUseCase
 import com.gk.app.testingviewmodels.domain.navigation.ScreensGateway
 import dagger.Module
 import dagger.Provides
@@ -27,5 +28,12 @@ object DomainModule {
         itemsGateway: ItemsGateway
     ): DetailUseCase {
         return DetailUseCase.Factory.get(screensGateway, itemsGateway)
+    }
+
+    @Provides
+    fun provideNavigationUseCase(
+        screensGateway: ScreensGateway
+    ): NavigationUseCase {
+        return NavigationUseCase.Factory.get(screensGateway)
     }
 }

@@ -16,7 +16,7 @@
             android:label="@string/title_activity_detail"
             android:theme="@style/AppTheme.NoActionBar" />
 
-        <activity android:name=".ui.navigation.MainActivity">
+        <activity android:name=".ui.navigation.NavigationActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

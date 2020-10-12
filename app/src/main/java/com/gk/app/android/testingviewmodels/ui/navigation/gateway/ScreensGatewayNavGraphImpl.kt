@@ -18,17 +18,24 @@ class ScreensGatewayNavGraphImpl(
     companion object {
         private var activityObserver: Application.ActivityLifecycleCallbacks? = null
         private var application: WeakReference<Application?> = WeakReference(null)
+        private var resumedActivity: WeakReference<Activity?> = WeakReference(null)
     }
 
     init {
+        // We need to observe the current resumed Activity and maintain a static weak reference to
+        // it in order to be able to access navigation resources and views
         if (activityObserver == null) {
             activityObserver = object : EmptyActivityLifecycleCallbacks {
                 override fun onActivityResumed(activity: Activity) {
-                    behavior.onActivityResumed(activity)
+                    resumedActivity = WeakReference(activity)
+                    behavior.setResumedActivity(resumedActivity)
                 }
 
                 override fun onActivityPaused(activity: Activity) {
-                    behavior.onActivityPaused(activity)
+                    if (resumedActivity.get() == activity) {
+                        resumedActivity = WeakReference(null)
+                        behavior.setResumedActivity(resumedActivity)
+                    }
                 }
             }
 
@@ -47,6 +54,7 @@ class ScreensGatewayNavGraphImpl(
 //        application = WeakReference(null)
 //    }
 
+    //region Screens
     override fun showHomeScreen() {
         Log.i(javaClass.simpleName, "showHomeScreen()")
 
@@ -60,6 +68,7 @@ class ScreensGatewayNavGraphImpl(
         // Dispatch to current behavior
         behavior.showDetailScreen(itemId)
     }
+    //endregion
 
     //region Dual/Single Pane Behavior
     private fun isDualPane(): Boolean {
@@ -77,9 +86,9 @@ class ScreensGatewayNavGraphImpl(
             }
         }
 
-    private val dualPaneBehavior: DualPaneBehavior by lazy { DualPaneBehavior() }
+    private val dualPaneBehavior: DualPaneBehavior by lazy { DualPaneBehavior(resumedActivity.get()) }
 
-    private val singlePaneBehavior: SinglePaneBehavior by lazy { SinglePaneBehavior() }
+    private val singlePaneBehavior: SinglePaneBehavior by lazy { SinglePaneBehavior(resumedActivity.get()) }
     //endregion
 
 }
