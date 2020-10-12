@@ -10,7 +10,7 @@ interface NavigationUseCase {
         }
     }
 
-    fun start()
+    fun startNavigation()
 
     fun terminate()
 }

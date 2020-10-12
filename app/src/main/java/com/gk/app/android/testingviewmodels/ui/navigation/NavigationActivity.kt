@@ -31,7 +31,7 @@ class NavigationActivity : AppCompatActivity() {
         Log.v(javaClass.simpleName, "onResume()")
         super.onResume()
 
-        viewModel?.start()
+        viewModel?.startNavigation()
     }
 
     override fun onPause() {

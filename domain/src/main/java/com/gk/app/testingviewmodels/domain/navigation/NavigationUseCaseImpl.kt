@@ -4,7 +4,7 @@ class NavigationUseCaseImpl(
     private val screensGateway: ScreensGateway
 ) : NavigationUseCase {
 
-    override fun start() {
+    override fun startNavigation() {
         screensGateway.showHomeScreen()
     }
 

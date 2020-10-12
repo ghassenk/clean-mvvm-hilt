@@ -15,7 +15,7 @@ class NavigationViewModelImpl @ViewModelInject constructor(
 
     }
 
-    override fun start() {
-        navigationUseCase.start()
+    override fun startNavigation() {
+        navigationUseCase.startNavigation()
     }
 }
