@@ -13,11 +13,8 @@ class HomeViewModelImpl @ViewModelInject constructor(
     @Assisted private val savedStateHandle: SavedStateHandle
 ) : HomeViewModel, ViewModel() {
 
-    //private var autoSelect: Boolean? = null //TODO also add save/restore current selection
-
     //region Life Cycle
     init {
-        //autoSelect = savedStateHandle.get<Boolean>("autoSelect")
         Log.v(javaClass.simpleName, "init()")
     }
 
@@ -48,8 +45,9 @@ class HomeViewModelImpl @ViewModelInject constructor(
     }
 
     private fun refresh() {
-//        Log.v(javaClass.simpleName, "refresh()")
-        Log.v(javaClass.simpleName, "refresh() autoSelect=${savedStateHandle.get<Boolean>("autoSelect")}")
+        Log.v(javaClass.simpleName, "refresh() " +
+                "autoSelect=${savedStateHandle.get<Boolean>("autoSelect")}")
+
         viewModelScope.launch {
             val result = homeUseCase.getHomeItems()
             Log.i(javaClass.simpleName, "received ${result.size} items!")

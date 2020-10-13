@@ -23,7 +23,7 @@ buildscript {
                 gson: '2.8.6',
                 // Do not update for now because some testing frameworks depend on specific junit versions
                 junit: '4.13',
-                kotlin_version: '1.4.10',
+                kotlin: '1.4.10',
                 lifecycle_runtime_ktx: '2.2.0',
                 lifecycle_extensions: '2.2.0',
                 lifecycle_viewmodel_ktx: '2.2.0',
@@ -42,7 +42,6 @@ buildscript {
                 support_legacy: '1.0.0',
                 truth: '1.0.1'
         ]
-        kotlin_version = '1.4.10'
     }
 
     repositories {
@@ -52,7 +51,7 @@ buildscript {
 
     dependencies {
         classpath 'com.android.tools.build:gradle:4.0.2'
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${versions.kotlin_version}"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${versions.kotlin}"
         classpath 'com.google.dagger:hilt-android-gradle-plugin:2.28-alpha'
 
         // NOTE: Do not place your application dependencies here; they belong

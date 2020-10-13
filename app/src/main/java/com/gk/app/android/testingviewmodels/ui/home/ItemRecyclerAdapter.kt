@@ -39,7 +39,7 @@ class ItemRecyclerAdapter(
     }
 
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
-        holder.title = "Item $position"
+        holder.title = _items[position].id
         holder.itemView.isSelected = (position == selectedPosition)
     }
 
