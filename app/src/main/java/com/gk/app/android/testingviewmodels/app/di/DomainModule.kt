@@ -1,6 +1,7 @@
 package com.gk.app.android.testingviewmodels.app.di
 
 import com.gk.app.testingviewmodels.domain.detail.DetailUseCase
+import com.gk.app.testingviewmodels.domain.detail.DetailsGateway
 import com.gk.app.testingviewmodels.domain.home.HomeUseCase
 import com.gk.app.testingviewmodels.domain.home.ItemsGateway
 import com.gk.app.testingviewmodels.domain.navigation.NavigationUseCase
@@ -25,9 +26,9 @@ object DomainModule {
     @Provides
     fun provideDetailUseCase(
         screensGateway: ScreensGateway,
-        itemsGateway: ItemsGateway
+        detailsGateway: DetailsGateway
     ): DetailUseCase {
-        return DetailUseCase.Factory.get(screensGateway, itemsGateway)
+        return DetailUseCase.Factory.get(screensGateway, detailsGateway)
     }
 
     @Provides

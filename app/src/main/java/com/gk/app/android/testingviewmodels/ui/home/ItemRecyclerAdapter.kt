@@ -1,6 +1,5 @@
 package com.gk.app.android.testingviewmodels.ui.home
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -22,12 +21,17 @@ class ItemRecyclerAdapter(
 ) : RecyclerView.Adapter<ItemViewHolder>() {
 
     private val _items = ArrayList(items)
-    private var selectedPosition: Int? = null
+    private var _selectedPosition: Int? = null
+    private var _onItemClick: (itemId: String) -> Unit = {}
+
+    fun setOnItemClick(onItemClick: (itemId: String) -> Unit) {
+        _onItemClick = onItemClick
+    }
 
     fun updateItems(items: List<Item>, selectedPosition: Int?) {
         _items.clear()
         _items.addAll(items)
-        this.selectedPosition = selectedPosition
+        _selectedPosition = selectedPosition
         notifyDataSetChanged()
     }
 
@@ -40,7 +44,8 @@ class ItemRecyclerAdapter(
 
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
         holder.title = _items[position].id
-        holder.itemView.isSelected = (position == selectedPosition)
+        holder.itemView.isSelected = (position == _selectedPosition)
+        holder.itemView.setOnClickListener { _onItemClick(_items[position].id) }
     }
 
     override fun getItemCount(): Int {

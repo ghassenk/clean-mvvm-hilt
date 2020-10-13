@@ -10,6 +10,7 @@ import androidx.fragment.app.FragmentFactory
 import androidx.fragment.app.viewModels
 import com.gk.app.android.testingviewmodels.R
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.android.synthetic.main.fragment_detail.*
 
 @AndroidEntryPoint
 class DetailFragment(
@@ -43,11 +44,15 @@ class DetailFragment(
 
         // If we do not have a constructor injected view model, obtain it from property delegate
         if (detailViewModel == null) {
-            val vm : DetailViewModelImpl by viewModels()
+            val vm: DetailViewModelImpl by viewModels()
             detailViewModel = vm
         }
 
         Log.i(javaClass.simpleName, "viewModel=${detailViewModel}")
+
+        detailViewModel?.bindView(this) {
+            detailText.text = it
+        }
     }
 
 }

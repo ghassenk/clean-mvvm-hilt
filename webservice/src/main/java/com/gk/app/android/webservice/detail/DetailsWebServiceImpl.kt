@@ -1,4 +1,4 @@
-package com.gk.app.android.webservice.home
+package com.gk.app.android.webservice.detail
 
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
@@ -7,20 +7,10 @@ import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.Query
 
-internal class ItemsWebServiceImpl : ItemsWebService {
+internal class DetailsWebServiceImpl : DetailsWebService {
 
-    override suspend fun getItems(
-        pageId: Long,//TODO use later in path
-        limit: Int,
-        offset: Int,
-        sort: String?,
-        maxAge: Int
-    ): ItemsResponse {
-        return endpoint.getItems(
-            limit = limit,
-            offset = offset,
-            sort = sort
-        )
+    override suspend fun getItemDetail(itemId: String): String {
+        return endpoint.getItemDetail(itemId = itemId).details
     }
 
     private val endpoint: ItemsEndPoint by lazy {
@@ -37,12 +27,10 @@ internal class ItemsWebServiceImpl : ItemsWebService {
 }
 
 private interface ItemsEndPoint {
-    @GET("items")
-    suspend fun getItems(
+    @GET("detail")
+    suspend fun getItemDetail(
         @Header("Cache-Control") cacheControl: String? = null,
         @Header("User-Agent") userAgent: String = "android-app",
-        @Query("limit") limit: Int,
-        @Query("offset") offset: Int,
-        @Query("sort") sort: String?
-    ): ItemsResponseImpl
+        @Query("id") itemId: String
+    ): DetailsResponseImpl
 }

@@ -1,6 +1,8 @@
 package com.gk.app.android.testingviewmodels.app.di
 
 import com.gk.app.android.webservice.WebService
+import com.gk.app.android.webservice.detail.DetailsGatewayImpl
+import com.gk.app.testingviewmodels.domain.detail.DetailsGateway
 import com.gk.app.testingviewmodels.domain.home.ItemsGateway
 import dagger.Module
 import dagger.Provides
@@ -15,4 +17,10 @@ object WebServiceModule {
     fun provideItemsGateway(): ItemsGateway {
         return WebService.Factory.getItemsGateway()
     }
+
+    @Provides
+    fun provideDetailsGateway(): DetailsGateway {
+        return WebService.Factory.getDetailsGateway()
+    }
+
 }

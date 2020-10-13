@@ -1,6 +1,5 @@
 package com.gk.app.testingviewmodels.domain.detail
 
-import com.gk.app.testingviewmodels.domain.home.ItemsGateway
 import com.gk.app.testingviewmodels.domain.navigation.ScreensGateway
 
 interface DetailUseCase {
@@ -8,13 +7,13 @@ interface DetailUseCase {
     object Factory {
         fun get(
             screensGateway: ScreensGateway,
-            itemsGateway: ItemsGateway
+            detailsGateway: DetailsGateway
         ): DetailUseCase {
-            return DetailUseCaseImpl(screensGateway, itemsGateway)
+            return DetailUseCaseImpl(screensGateway, detailsGateway)
         }
     }
 
-    suspend fun getItemDetails(itemId: String): List<Any>
+    suspend fun getItemDetails(itemId: String): String
 
     fun selectDetail(detailId: String)
 

@@ -66,9 +66,9 @@ class HomeFragment : Fragment() {
 
         homeViewModel?.let { viewModel ->
             val adapter = ItemRecyclerAdapter()
+            adapter.setOnItemClick(viewModel::onItemClicked)
             homeRecycler.layoutManager = LinearLayoutManager(homeRecycler.context)
             homeRecycler.adapter = adapter
-            homeRecycler.setOnClickListener { viewModel.onItemClicked("someId") }
 
             viewModel.bindToView(
                 viewOwner = viewLifecycleOwner
