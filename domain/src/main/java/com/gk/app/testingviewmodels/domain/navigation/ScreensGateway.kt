@@ -9,5 +9,11 @@ interface ScreensGateway {
 
     fun showDetailScreen(itemId:String)
 
+
+    fun onNavigateBack()
+
+    fun onNavigateUp()
+
+
     fun terminate()
 }

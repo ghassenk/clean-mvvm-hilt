@@ -69,6 +69,16 @@ class ScreensGatewayNavGraphImpl(
         // Dispatch to current behavior
         behavior.showDetailScreen(itemId)
     }
+
+    override fun onNavigateBack() {
+        // Dispatch to current behavior
+        behavior.onNavigateBack()
+    }
+
+    override fun onNavigateUp() {
+        // Dispatch to current behavior
+        behavior.onNavigateUp()
+    }
     //endregion
 
     //region Dual/Single Pane Behavior

@@ -12,5 +12,9 @@ interface NavigationUseCase {
 
     fun startNavigation()
 
+    fun onNavigateBack()
+
+    fun onNavigateUp()
+
     fun terminate()
 }

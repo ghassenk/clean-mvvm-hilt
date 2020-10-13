@@ -17,7 +17,7 @@ internal class SinglePaneBehavior(
         get() {
             return try {
                 activity.get()?.findNavController(R.id.navHostFragment)
-            } catch (e:Exception) {
+            } catch (e: Exception) {
                 null
             }
         }
@@ -29,14 +29,27 @@ internal class SinglePaneBehavior(
     //region Screens
     override fun showHomeScreen() {
         singleNavController?.navigate(R.id.navigation_home)
-            //?: throw IllegalStateException("No NavController Found!")
+        //?: throw IllegalStateException("No NavController Found!")
     }
 
     override fun showDetailScreen(itemId: String) {
         singleNavController?.navigate(
-                R.id.navigation_detail,
-                Bundle().apply { this.putString("itemId", itemId) })
-            //?: throw IllegalStateException("No NavController Found!")
+            R.id.navigation_detail,
+            Bundle().apply { this.putString("itemId", itemId) })
+        //?: throw IllegalStateException("No NavController Found!")
+    }
+
+    override fun onNavigateBack() {
+        singleNavController?.let {
+            if (!it.popBackStack()) {
+                // Call finish() on your Activity
+                activity.get()?.finish()
+            }
+        }
+    }
+
+    override fun onNavigateUp() {
+
     }
 
     override fun terminate() {

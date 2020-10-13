@@ -51,8 +51,17 @@ internal class DualPaneBehavior(
         //?: throw IllegalStateException("No NavController Found!")
     }
 
+    override fun onNavigateBack() {
+        // No back navigation in dual pane for now
+        activity.get()?.finish()
+    }
+
+    override fun onNavigateUp() {
+
+    }
+
     override fun terminate() {
-        TODO("Not yet implemented")
+
     }
     //endregion
 }

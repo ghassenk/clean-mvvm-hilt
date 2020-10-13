@@ -8,6 +8,14 @@ internal class NavigationUseCaseImpl(
         screensGateway.showHomeScreen()
     }
 
+    override fun onNavigateBack() {
+        screensGateway.onNavigateBack()
+    }
+
+    override fun onNavigateUp() {
+        screensGateway.onNavigateUp()
+    }
+
     override fun terminate() {
         screensGateway.terminate()
     }

@@ -27,6 +27,10 @@ class NavigationActivity : AppCompatActivity() {
         viewModel?.bindToView(this)
     }
 
+    override fun onBackPressed() {
+        viewModel?.onBackClicked()
+    }
+
     override fun onResume() {
         Log.v(javaClass.simpleName, "onResume()")
         super.onResume()
