@@ -1,7 +1,7 @@
-package com.gk.app.android.webservice.home
+package com.gk.app.android.webservice.items
 
-import com.gk.app.testingviewmodels.domain.home.Item
-import com.gk.app.testingviewmodels.domain.home.ItemsGateway
+import com.gk.app.testingviewmodels.domain.items.Item
+import com.gk.app.testingviewmodels.domain.items.ItemsGateway
 
 internal class ItemsGatewayImpl : ItemsGateway {
 

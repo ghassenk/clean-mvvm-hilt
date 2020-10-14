@@ -1,9 +1,9 @@
 package com.gk.app.android.webservice
 
 import com.gk.app.android.webservice.detail.DetailsGatewayImpl
-import com.gk.app.android.webservice.home.ItemsGatewayImpl
+import com.gk.app.android.webservice.items.ItemsGatewayImpl
 import com.gk.app.testingviewmodels.domain.detail.DetailsGateway
-import com.gk.app.testingviewmodels.domain.home.ItemsGateway
+import com.gk.app.testingviewmodels.domain.items.ItemsGateway
 
 object WebService {
     object Factory {

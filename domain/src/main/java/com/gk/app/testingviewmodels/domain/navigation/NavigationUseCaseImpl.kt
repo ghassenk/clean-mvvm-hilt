@@ -5,7 +5,7 @@ internal class NavigationUseCaseImpl(
 ) : NavigationUseCase {
 
     override fun startNavigation() {
-        screensGateway.showHomeScreen()
+        screensGateway.refreshNavigation()
     }
 
     override fun onNavigateBack() {

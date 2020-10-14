@@ -2,8 +2,8 @@ package com.gk.app.android.testingviewmodels.app.di
 
 import com.gk.app.testingviewmodels.domain.detail.DetailUseCase
 import com.gk.app.testingviewmodels.domain.detail.DetailsGateway
-import com.gk.app.testingviewmodels.domain.home.HomeUseCase
-import com.gk.app.testingviewmodels.domain.home.ItemsGateway
+import com.gk.app.testingviewmodels.domain.items.ItemsUseCase
+import com.gk.app.testingviewmodels.domain.items.ItemsGateway
 import com.gk.app.testingviewmodels.domain.navigation.NavigationUseCase
 import com.gk.app.testingviewmodels.domain.navigation.ScreensGateway
 import dagger.Module
@@ -19,8 +19,8 @@ object DomainModule {
     fun provideHomeUseCase(
         screensGateway: ScreensGateway,
         itemsGateway: ItemsGateway
-    ): HomeUseCase {
-        return HomeUseCase.Factory.get(screensGateway, itemsGateway)
+    ): ItemsUseCase {
+        return ItemsUseCase.Factory.get(screensGateway, itemsGateway)
     }
 
     @Provides

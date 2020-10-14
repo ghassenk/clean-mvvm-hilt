@@ -1,4 +1,4 @@
-package com.gk.app.testingviewmodels.domain.home
+package com.gk.app.testingviewmodels.domain.items
 
 interface ItemsGateway {
     suspend fun getItems(): List<Item>

@@ -5,22 +5,18 @@ import androidx.hilt.Assisted
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.*
 import com.gk.app.testingviewmodels.domain.detail.DetailUseCase
-import com.gk.app.testingviewmodels.domain.home.Item
 import kotlinx.coroutines.launch
 
 class DetailViewModelImpl @ViewModelInject constructor(
     private val detailUseCase: DetailUseCase,
-    @Assisted savedStateHandle: SavedStateHandle
+    @Assisted private val savedStateHandle: SavedStateHandle
 ) : DetailViewModel, ViewModel() {
 
-    private lateinit var itemId: String
     private val detail: MutableLiveData<String> by lazy { MutableLiveData() }
 
     //region Life Cycle
     init {
         Log.i(javaClass.simpleName, "init()")
-        savedStateHandle.get<String>("itemId")?.let { itemId = it }
-            ?: throw IllegalArgumentException("No itemId argument found!")
     }
 
     override fun onCleared() {
@@ -42,8 +38,10 @@ class DetailViewModelImpl @ViewModelInject constructor(
 
     private fun refresh() {
         viewModelScope.launch {
-            val result = detailUseCase.getItemDetails(itemId)
-            detail.value = result
+            savedStateHandle.get<String>("itemId")?.let {
+                val result = detailUseCase.getItemDetails(it)
+                detail.value = result
+            }
         }
     }
 

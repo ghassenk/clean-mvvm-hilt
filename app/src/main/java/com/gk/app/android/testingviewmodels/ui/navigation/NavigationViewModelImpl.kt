@@ -1,5 +1,6 @@
 package com.gk.app.android.testingviewmodels.ui.navigation
 
+import android.util.Log
 import androidx.hilt.Assisted
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.SavedStateHandle
@@ -11,11 +12,11 @@ class NavigationViewModelImpl @ViewModelInject constructor(
     @Assisted private val savedStateHandle: SavedStateHandle
 ) : NavigationViewModel, ViewModel() {
 
-    override fun bindToView(viewOwner: Any) {
-
+    init {
+        Log.v(javaClass.simpleName, "init()")
     }
 
-    override fun startNavigation() {
+    override fun bindView(viewOwner: Any) {
         navigationUseCase.startNavigation()
     }
 
@@ -27,7 +28,9 @@ class NavigationViewModelImpl @ViewModelInject constructor(
         navigationUseCase.onNavigateUp()
     }
 
+
     override fun onCleared() {
+        Log.v(javaClass.simpleName, "onCleared()")
         navigationUseCase.terminate()
         super.onCleared()
     }

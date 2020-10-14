@@ -1,6 +1,6 @@
-package com.gk.app.android.webservice.home
+package com.gk.app.android.webservice.items
 
-import com.gk.app.testingviewmodels.domain.home.Item
+import com.gk.app.testingviewmodels.domain.items.Item
 
 internal class MockItemsWebService : ItemsWebService {
 
@@ -11,7 +11,7 @@ internal class MockItemsWebService : ItemsWebService {
         sort: String?,
         maxAge: Int
     ): ItemsResponse {
-        return object :ItemsResponse {
+        return object : ItemsResponse {
             override val items: List<Item>
                 get() = generateMockItems()
         }

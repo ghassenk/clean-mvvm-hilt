@@ -2,7 +2,7 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/rightNavGraph"
+    android:id="@+id/leftNavGraph"
     app:startDestination="@+id/navigation_loading">
 
     <fragment
@@ -16,6 +16,13 @@
         android:name="com.gk.app.android.testingviewmodels.ui.navigation.ErrorFragment"
         android:label="@string/title_error"
         tools:layout="@layout/fragment_error" />
+
+    <fragment
+        android:id="@+id/navigation_item_list"
+        android:name="com.gk.app.android.testingviewmodels.ui.items.ItemListFragment"
+        android:label="@string/title_home"
+        tools:layout="@layout/fragment_items" />
+    <!--TODO check if we can pass arguments here-->
 
     <fragment
         android:id="@+id/navigation_detail"

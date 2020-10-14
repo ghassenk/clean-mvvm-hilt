@@ -5,45 +5,69 @@ import android.os.Bundle
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import com.gk.app.android.testingviewmodels.R
-import com.gk.app.android.testingviewmodels.ui.navigation.NavigationActivity
 import java.lang.ref.WeakReference
 
 internal class SinglePaneBehavior(
     activity: Activity?
 ) : MultiPaneBehavior {
 
-    private var activity: WeakReference<Activity?> = WeakReference(activity)
+    private var _activity: WeakReference<Activity?> = WeakReference(activity)
     private val singleNavController: NavController?
         get() {
             return try {
-                activity.get()?.findNavController(R.id.navHostFragment)
+                _activity.get()?.findNavController(R.id.navHostFragment)
             } catch (e: Exception) {
                 null
             }
         }
+    private var _currentScreen: Screen? = null
 
-    override fun setResumedActivity(resumedActivity: WeakReference<Activity?>) {
-        activity = resumedActivity
+    //region Life Cycle
+    override fun setActivity(activity: Activity?) {
+        _activity = WeakReference(activity)
     }
 
+    override fun terminate() {
+
+    }
+    //endregion
+
     //region Screens
-    override fun showHomeScreen() {
-        singleNavController?.navigate(R.id.navigation_home)
+    fun getCurrentScreen(): Screen? {
+        return _currentScreen
+    }
+
+    override fun refreshNavigation() {
+        // Nothing to do
+    }
+
+    override fun showItemsScreen(autoSelectPosition: Int?) {
+        singleNavController?.let {  navController ->
+            navController.navigate(R.id.navigation_item_list)
+            updateCurrentScreenFromNavController()
+        }
         //?: throw IllegalStateException("No NavController Found!")
     }
 
-    override fun showDetailScreen(itemId: String) {
-        singleNavController?.navigate(
-            R.id.navigation_detail,
-            Bundle().apply { this.putString("itemId", itemId) })
+    override fun showDetailScreen(itemId: String?) {
+        singleNavController?.let {
+            it.navigate(
+                R.id.navigation_detail,
+                Bundle().apply { this.putString("itemId", itemId) }
+            )
+            updateCurrentScreenFromNavController()
+        }
         //?: throw IllegalStateException("No NavController Found!")
     }
 
     override fun onNavigateBack() {
         singleNavController?.let {
-            if (!it.popBackStack()) {
-                // Call finish() on your Activity
-                activity.get()?.finish()
+            // We try to pop un entry from the back stack, otherwise back will finish
+            // the activity
+            if (it.popBackStack()) {
+                updateCurrentScreenFromNavController()
+            } else {
+                _activity.get()?.finish()
             }
         }
     }
@@ -52,9 +76,21 @@ internal class SinglePaneBehavior(
 
     }
 
-    override fun terminate() {
-
+    private fun updateCurrentScreenFromNavController() {
+        singleNavController?.let {
+            if (it.currentDestination == null) {
+                _currentScreen = null
+            } else {
+                when (it.currentDestination?.id) {
+                    R.id.navigation_loading -> _currentScreen = Screen.Loading
+                    R.id.navigation_error -> _currentScreen = Screen.Error
+                    R.id.navigation_item_list -> _currentScreen = Screen.ItemList
+                    R.id.navigation_detail -> _currentScreen = Screen.ItemDetail
+                }
+            }
+        }
     }
+
     //endregion
 
 }

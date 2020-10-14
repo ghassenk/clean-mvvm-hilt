@@ -1,4 +1,4 @@
-package com.gk.app.android.testingviewmodels.ui.home
+package com.gk.app.android.testingviewmodels.ui.items
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.gk.app.android.testingviewmodels.R
-import com.gk.app.testingviewmodels.domain.home.Item
+import com.gk.app.testingviewmodels.domain.items.Item
 
 class ItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     var title: String?
@@ -22,9 +22,9 @@ class ItemRecyclerAdapter(
 
     private val _items = ArrayList(items)
     private var _selectedPosition: Int? = null
-    private var _onItemClick: (itemId: String) -> Unit = {}
+    private var _onItemClick: (position: Int) -> Unit = {}
 
-    fun setOnItemClick(onItemClick: (itemId: String) -> Unit) {
+    fun setOnItemClick(onItemClick: (position: Int) -> Unit) {
         _onItemClick = onItemClick
     }
 
@@ -45,7 +45,7 @@ class ItemRecyclerAdapter(
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
         holder.title = _items[position].id
         holder.itemView.isSelected = (position == _selectedPosition)
-        holder.itemView.setOnClickListener { _onItemClick(_items[position].id) }
+        holder.itemView.setOnClickListener { _onItemClick(position) }
     }
 
     override fun getItemCount(): Int {

@@ -1,4 +1,4 @@
-package com.gk.app.android.webservice.home
+package com.gk.app.android.webservice.items
 
 import com.google.gson.annotations.SerializedName
 

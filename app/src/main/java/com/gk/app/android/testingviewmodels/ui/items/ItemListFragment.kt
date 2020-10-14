@@ -1,4 +1,4 @@
-package com.gk.app.android.testingviewmodels.ui.home
+package com.gk.app.android.testingviewmodels.ui.items
 
 import android.os.Bundle
 import android.util.Log
@@ -9,28 +9,28 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentFactory
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.SavedStateHandle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.gk.app.android.testingviewmodels.R
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.fragment_home.*
+import kotlinx.android.synthetic.main.fragment_items.*
 
 @AndroidEntryPoint
-class HomeFragment : Fragment() {
+class ItemListFragment : Fragment() {
 
-    private var homeViewModel: HomeViewModel? = null
+    private var itemListViewModel: ItemListViewModel? = null
+    private var selectedViewPositionArg: Int? = null
 
     /**
      * Factory for creating this fragment with an injected ViewModel (otherwise it would be
      * automatically injected by Hilt)
      */
     class Factory(
-        private val viewModel: HomeViewModel? = null
+        private val viewModel: ItemListViewModel? = null
     ) : FragmentFactory() {
         override fun instantiate(classLoader: ClassLoader, className: String): Fragment {
-            if (className == HomeFragment::class.java.name) {
-                return HomeFragment().apply {
-                    viewModel?.let { this.homeViewModel = it }
+            if (className == ItemListFragment::class.java.name) {
+                return ItemListFragment().apply {
+                    viewModel?.let { this.itemListViewModel = it }
                 }
             }
             return super.instantiate(classLoader, className)
@@ -43,7 +43,7 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         Log.v(javaClass.simpleName, "onCreateView() arguments=$arguments")
-        return inflater.inflate(R.layout.fragment_home, container, false)
+        return inflater.inflate(R.layout.fragment_items, container, false)
     }
 
     override fun onDestroy() {
@@ -55,25 +55,32 @@ class HomeFragment : Fragment() {
         Log.v(javaClass.simpleName, "onActivityCreated() savedInstanceState=$savedInstanceState")
         super.onActivityCreated(savedInstanceState)
 
-        // If we do not have a constructor injected view model, obtain it from property delegate
-        if (homeViewModel == null) {
-            val vm: HomeViewModelImpl by viewModels()
-            homeViewModel = vm
+        selectedViewPositionArg = arguments?.getInt("autoSelectPosition")
 
+        // If we do not have a constructor injected view model, obtain it from property delegate
+        if (itemListViewModel == null) {
+            val vm: ItemListViewModelImpl by activityViewModels()
+            itemListViewModel = vm
         }
 
-        Log.i(javaClass.simpleName, "viewModel=$homeViewModel")
+        Log.i(javaClass.simpleName, "viewModel=$itemListViewModel")
 
-        homeViewModel?.let { viewModel ->
+        itemListViewModel?.let { viewModel ->
             val adapter = ItemRecyclerAdapter()
             adapter.setOnItemClick(viewModel::onItemClicked)
-            homeRecycler.layoutManager = LinearLayoutManager(homeRecycler.context)
-            homeRecycler.adapter = adapter
+            itemsRecycler.layoutManager = LinearLayoutManager(itemsRecycler.context)
+            itemsRecycler.adapter = adapter
 
             viewModel.bindToView(
                 viewOwner = viewLifecycleOwner
             ) { items, selectedPosition ->
-                adapter.updateItems(items, selectedPosition)
+                selectedViewPositionArg?.let {
+                    if (it > 0 && it < items.size) {
+                        adapter.updateItems(items, it)
+                        viewModel.onItemClicked(it)
+                        selectedViewPositionArg = null
+                    }
+                } ?: adapter.updateItems(items, selectedPosition)
             }
         }
     }

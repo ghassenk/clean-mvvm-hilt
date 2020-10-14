@@ -13,7 +13,7 @@ class NavigationActivity : AppCompatActivity() {
     private var viewModel: NavigationViewModel? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        Log.v(javaClass.simpleName, "onCreate()")
+        Log.i(javaClass.simpleName, "onCreate()")
 
         super.onCreate(savedInstanceState)
 
@@ -24,7 +24,10 @@ class NavigationActivity : AppCompatActivity() {
             viewModel = vm
         }
 
-        viewModel?.bindToView(this)
+        // Single or Dual panes will be shown with default, loading views, and navigation system
+        // will be started when we bind to the ViewModel
+        viewModel?.bindView(this)
+
     }
 
     override fun onBackPressed() {
@@ -34,8 +37,6 @@ class NavigationActivity : AppCompatActivity() {
     override fun onResume() {
         Log.v(javaClass.simpleName, "onResume()")
         super.onResume()
-
-        viewModel?.startNavigation()
     }
 
     override fun onPause() {

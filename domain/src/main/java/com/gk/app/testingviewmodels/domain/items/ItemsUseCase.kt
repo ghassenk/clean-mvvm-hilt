@@ -1,21 +1,21 @@
-package com.gk.app.testingviewmodels.domain.home
+package com.gk.app.testingviewmodels.domain.items
 
 import com.gk.app.testingviewmodels.domain.navigation.ScreensGateway
 
-interface HomeUseCase {
+interface ItemsUseCase {
 
     object Factory {
         fun get(
             screensGateway: ScreensGateway,
             itemsGateway: ItemsGateway
-        ): HomeUseCase {
-            return HomeUseCaseImpl(screensGateway, itemsGateway)
+        ): ItemsUseCase {
+            return ItemsUseCaseImpl(screensGateway, itemsGateway)
         }
     }
 
     fun openItemDetails(itemId: String)
 
-    suspend fun getHomeItems() : List<Item>
+    suspend fun getItems() : List<Item>
 
     fun terminate()
 }

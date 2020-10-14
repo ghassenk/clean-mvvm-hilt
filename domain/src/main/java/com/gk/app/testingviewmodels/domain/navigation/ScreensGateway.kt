@@ -5,9 +5,11 @@ package com.gk.app.testingviewmodels.domain.navigation
  */
 interface ScreensGateway {
 
-    fun showHomeScreen()
+    fun refreshNavigation()
 
-    fun showDetailScreen(itemId:String)
+    fun showItemsScreen(autoSelectPosition: Int?)
+
+    fun showDetailScreen(itemId:String?)
 
 
     fun onNavigateBack()

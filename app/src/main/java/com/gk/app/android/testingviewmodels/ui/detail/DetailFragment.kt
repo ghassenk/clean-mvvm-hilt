@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentFactory
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import com.gk.app.android.testingviewmodels.R
 import dagger.hilt.android.AndroidEntryPoint
@@ -44,7 +45,7 @@ class DetailFragment(
 
         // If we do not have a constructor injected view model, obtain it from property delegate
         if (detailViewModel == null) {
-            val vm: DetailViewModelImpl by viewModels()
+            val vm: DetailViewModelImpl by activityViewModels()
             detailViewModel = vm
         }
 

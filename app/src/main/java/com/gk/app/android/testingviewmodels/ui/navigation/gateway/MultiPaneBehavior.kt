@@ -5,6 +5,6 @@ import com.gk.app.testingviewmodels.domain.navigation.ScreensGateway
 import java.lang.ref.WeakReference
 
 internal interface MultiPaneBehavior : ScreensGateway {
-    fun setResumedActivity(resumedActivity: WeakReference<Activity?>)
+    fun setActivity(activity: Activity?)
 }
 
