@@ -16,7 +16,8 @@ class DetailViewModelImpl @ViewModelInject constructor(
 
     //region Life Cycle
     init {
-        Log.i(javaClass.simpleName, "init()")
+        val itemId=  savedStateHandle.get<String>("itemId")
+        Log.i(javaClass.simpleName, "init() itemId = $itemId")
     }
 
     override fun onCleared() {
@@ -29,6 +30,8 @@ class DetailViewModelImpl @ViewModelInject constructor(
     //region API
 
     override fun bindView(viewOwner: Any, onDetailUpdate: (detail: String) -> Unit) {
+        Log.v(javaClass.simpleName, "bindView() savedStateHandle=${savedStateHandle}")
+
         if (viewOwner is LifecycleOwner) {
             detail.removeObservers(viewOwner)
             detail.observe(viewOwner, Observer(onDetailUpdate))
@@ -37,8 +40,11 @@ class DetailViewModelImpl @ViewModelInject constructor(
     }
 
     private fun refresh() {
+        val itemId=  savedStateHandle.get<String>("itemId")
+        Log.v(javaClass.simpleName, "refresh() itemId = $itemId")
+
         viewModelScope.launch {
-            savedStateHandle.get<String>("itemId")?.let {
+            itemId?.let {
                 val result = detailUseCase.getItemDetails(it)
                 detail.value = result
             }

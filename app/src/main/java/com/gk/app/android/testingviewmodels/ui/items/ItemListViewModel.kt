@@ -4,7 +4,7 @@ import com.gk.app.testingviewmodels.domain.items.Item
 
 interface ItemListViewModel {
     fun onItemClicked(position: Int)
-    fun bindToView(
+    fun bindView(
         viewOwner: Any,
         onItemsUpdate: (items: List<Item>, selectedPosition: Int?) -> Unit
     )

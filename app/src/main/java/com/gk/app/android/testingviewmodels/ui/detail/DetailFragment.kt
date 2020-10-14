@@ -45,7 +45,7 @@ class DetailFragment(
 
         // If we do not have a constructor injected view model, obtain it from property delegate
         if (detailViewModel == null) {
-            val vm: DetailViewModelImpl by activityViewModels()
+            val vm: DetailViewModelImpl by viewModels()
             detailViewModel = vm
         }
 

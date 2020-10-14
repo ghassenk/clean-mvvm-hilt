@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentFactory
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.gk.app.android.testingviewmodels.R
 import dagger.hilt.android.AndroidEntryPoint
@@ -71,7 +70,7 @@ class ItemListFragment : Fragment() {
             itemsRecycler.layoutManager = LinearLayoutManager(itemsRecycler.context)
             itemsRecycler.adapter = adapter
 
-            viewModel.bindToView(
+            viewModel.bindView(
                 viewOwner = viewLifecycleOwner
             ) { items, selectedPosition ->
                 selectedViewPositionArg?.let {

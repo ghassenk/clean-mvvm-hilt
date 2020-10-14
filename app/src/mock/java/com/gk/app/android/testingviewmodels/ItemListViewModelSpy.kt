@@ -13,7 +13,7 @@ open class ItemListViewModelSpy : ItemListViewModel {
         this.itemId = itemId
     }
 
-    override fun bindToView(
+    override fun bindView(
         viewOwner: Any,
         onItemsUpdate: (items: List<Item>, selectedPosition: Int?) -> Unit
     ) {

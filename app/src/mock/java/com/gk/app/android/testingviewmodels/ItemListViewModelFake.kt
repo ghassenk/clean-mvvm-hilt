@@ -8,7 +8,7 @@ open class ItemListViewModelFake : ItemListViewModel {
         TODO("Not yet implemented")
     }
 
-    override fun bindToView(
+    override fun bindView(
         viewOwner: Any,
         onItemsUpdate: (items: List<Item>, selectedPosition: Int?) -> Unit
     ) {

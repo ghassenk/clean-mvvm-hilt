@@ -28,7 +28,7 @@ class ItemListViewModelImpl @ViewModelInject constructor(
     //region Bindings
     private val items: MutableLiveData<List<Item>> by lazy { MutableLiveData() }
 
-    override fun bindToView(
+    override fun bindView(
         viewOwner: Any,
         onItemsUpdate: (items: List<Item>, selectedPosition: Int?) -> Unit
     ) {

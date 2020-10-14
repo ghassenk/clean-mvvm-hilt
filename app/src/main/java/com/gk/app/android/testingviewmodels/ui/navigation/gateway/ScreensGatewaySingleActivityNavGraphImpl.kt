@@ -96,8 +96,8 @@ class ScreensGatewaySingleActivityNavGraphImpl(
 
         _lastScreenMode = newScreenMode
 
-        Log.i(javaClass.simpleName, "_lastScreenMode=$_lastScreenMode")
-        Log.i(javaClass.simpleName, "behavior=$behavior")
+        Log.d(javaClass.simpleName, "_lastScreenMode = $_lastScreenMode")
+        Log.d(javaClass.simpleName, "behavior = $behavior")
     }
 
     private fun cleanStartSinglePane() {
@@ -108,53 +108,53 @@ class ScreensGatewaySingleActivityNavGraphImpl(
 
     private fun cleanStartDualPane() {
         Log.i(javaClass.simpleName, "cleanStartDualPane()")
-//        // e.g show home screen's dual mode:
-//        // item list on the left, detail of the first item on the right
-//        // (Will force the view to select its first item)
-//        singlePaneBehavior.showItemsScreen(0)
+        // e.g show home screen's dual mode:
+        // item list on the left, detail of the first item on the right
+        // (Will force the view to select its first item)
+        singlePaneBehavior?.showItemsScreen(0)
     }
 
     private fun switchToDualPane() {
         Log.i(javaClass.simpleName, "switchToDualPane()")
-//        // e.g we're on the item list screen:
-//        // show item list on the left, detail of first item on the right
-//        when (singlePaneBehavior.getCurrentScreen()) {
-//            Screen.ItemList -> {
-//                // No item was selected: so we set selected position to 0 (to force the view
-//                // to load the first item)
-//                behavior.showItemsScreen(0)
-//            }
-//            Screen.ItemDetail -> {
-//                // An item was selected with its details shown : set the same selected position
-//                // and same item details on the left
-//                // (-> restore the DetailViewModel and the ItemListViewModel)
-//                behavior.showItemsScreen(null)
-//            }
-//        }
+        // e.g we're on the item list screen:
+        // show item list on the left, detail of first item on the right
+        when (singlePaneBehavior?.getCurrentScreen()) {
+            Screen.ItemList -> {
+                // No item was selected: so we set selected position to 0 (to force the view
+                // to load the first item)
+                behavior.showItemsScreen(0)
+            }
+            Screen.ItemDetail -> {
+                // An item was selected with its details shown : set the same selected position
+                // and same item details on the left
+                // (-> restore the DetailViewModel and the ItemListViewModel)
+                behavior.showItemsScreen(null)
+            }
+        }
     }
 
     private fun switchToSinglePane() {
         Log.i(javaClass.simpleName, "switchToSinglePane()")
-//        // e.g we were on the master detail screen with a selected item in the list on the left
-//        // and its detail on the right and show the last selected item detail
-//        // TODO KEEP the item detail fragment's view model
-//        when (dualPaneBehavior.getCurrentLeftScreen()) {
-//            Screen.ItemList -> {
-//                if (dualPaneBehavior.getCurrentRightScreen() == Screen.ItemDetail) {
-//                    // Keep only the detail screen for the same item
-//                    // (-> restore the DetailViewModel)
-//                    behavior.showDetailScreen(null)
-//                } else {
-//                    behavior.showItemsScreen(null)
-//                }
-//            }
-//            Screen.Loading -> {
-//                behavior.showItemsScreen(null)
-//            }
-//            Screen.Error -> {
-//                behavior.showItemsScreen(null)
-//            }
-//        }
+        // e.g we were on the master detail screen with a selected item in the list on the left
+        // and its detail on the right and show the last selected item detail
+        // TODO KEEP the item detail fragment's view model
+        when (dualPaneBehavior?.getCurrentLeftScreen()) {
+            Screen.ItemList -> {
+                if (dualPaneBehavior?.getCurrentRightScreen() == Screen.ItemDetail) {
+                    // Keep only the detail screen for the same item
+                    // (-> restore the DetailViewModel)
+                    behavior.showDetailScreen(null)
+                } else {
+                    behavior.showItemsScreen(null)
+                }
+            }
+            Screen.Loading -> {
+                behavior.showItemsScreen(null)
+            }
+            Screen.Error -> {
+                behavior.showItemsScreen(null)
+            }
+        }
     }
 
     private fun stopNavigation() {
