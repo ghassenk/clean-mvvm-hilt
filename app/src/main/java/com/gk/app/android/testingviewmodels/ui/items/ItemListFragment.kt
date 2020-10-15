@@ -12,11 +12,12 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.navGraphViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.gk.app.android.testingviewmodels.R
+import com.gk.app.android.testingviewmodels.ui.detail.DetailViewModelImpl
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_items.*
 
 @AndroidEntryPoint
-class ItemListFragment : Fragment() {
+class ItemListFragment : Fragment(R.layout.fragment_items) {
 
     private var itemListViewModel: ItemListViewModel? = null
     private var selectedViewPositionArg: Int? = null
@@ -38,14 +39,9 @@ class ItemListFragment : Fragment() {
         }
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        Log.v(javaClass.simpleName, "onCreateView() arguments=$arguments" +
-                " savedInstanceState=$savedInstanceState")
-        return inflater.inflate(R.layout.fragment_items, container, false)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        Log.v(javaClass.simpleName, "onCreate()")
+        super.onCreate(savedInstanceState)
     }
 
     override fun onDestroy() {
@@ -65,8 +61,12 @@ class ItemListFragment : Fragment() {
             // TODO for now we're using the activityViewModels() to keep this fragment's view model
             // alive across the activity's configuration changes, as it does not need savedStateHandle
             // to be updated
-            val vm: ItemListViewModelImpl by activityViewModels()
-//            val vm: ItemListViewModelImpl by viewModels()
+//            val vm: ItemListViewModelImpl by activityViewModels()
+            val vm: ItemListViewModelImpl by viewModels()
+            
+            // Not compatible with Hilt (for now?)
+            //val vm: ItemListViewModelImpl by navGraphViewModels(R.id.leftNavGraph)
+
             itemListViewModel = vm
         }
 

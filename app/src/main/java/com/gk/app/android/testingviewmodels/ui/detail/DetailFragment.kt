@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentFactory
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import androidx.navigation.navGraphViewModels
 import com.gk.app.android.testingviewmodels.R
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_detail.*
@@ -16,7 +17,7 @@ import kotlinx.android.synthetic.main.fragment_detail.*
 @AndroidEntryPoint
 class DetailFragment(
     private var detailViewModel: DetailViewModel? = null
-) : Fragment() {
+) : Fragment(R.layout.fragment_detail) {
 
     class Factory(
         private val detailViewModel: DetailViewModel? = null
@@ -26,13 +27,9 @@ class DetailFragment(
         }
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        Log.v(javaClass.simpleName, "onCreateView() arguments=$arguments" +
-                " savedInstanceState=$savedInstanceState")
-        return inflater.inflate(R.layout.fragment_detail, container, false)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        Log.v(javaClass.simpleName, "onCreate()")
+        super.onCreate(savedInstanceState)
     }
 
     override fun onDestroy() {
@@ -50,9 +47,11 @@ class DetailFragment(
             // Use activityViewModels() to keep view model across configuration changes, but we need
             // to pass fragment args manually
             val vm: DetailViewModelImpl by activityViewModels()
+
             // Use viewModels() pass automatically fragment's args to view model, but view model will
             // not be kept following configuration change
             // val vm: DetailViewModelImpl by viewModels()
+
             detailViewModel = vm
         }
 
