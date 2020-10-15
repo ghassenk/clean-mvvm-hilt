@@ -8,7 +8,8 @@ internal class ItemsUseCaseImpl(
 ) : ItemsUseCase {
 
     override fun openItemDetails(itemId: String) {
-        // Solution 1 call a UI gateway to start the actual screen and pass it the itemId
+        // Use a gateway for logs
+        println("${javaClass.simpleName} openItemDetails() itemId=$itemId")
         screensGateway.showDetailScreen(itemId)
     }
 

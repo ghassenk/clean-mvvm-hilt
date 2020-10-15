@@ -8,6 +8,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentFactory
 import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
+import androidx.navigation.navGraphViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.gk.app.android.testingviewmodels.R
 import dagger.hilt.android.AndroidEntryPoint
@@ -41,7 +43,8 @@ class ItemListFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        Log.v(javaClass.simpleName, "onCreateView() arguments=$arguments")
+        Log.v(javaClass.simpleName, "onCreateView() arguments=$arguments" +
+                " savedInstanceState=$savedInstanceState")
         return inflater.inflate(R.layout.fragment_items, container, false)
     }
 
@@ -51,14 +54,19 @@ class ItemListFragment : Fragment() {
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
-        Log.v(javaClass.simpleName, "onActivityCreated() savedInstanceState=$savedInstanceState")
+        Log.v(javaClass.simpleName, "onCreateView() arguments=$arguments" +
+                " savedInstanceState=$savedInstanceState")
         super.onActivityCreated(savedInstanceState)
 
         selectedViewPositionArg = arguments?.getInt("autoSelectPosition")
 
         // If we do not have a constructor injected view model, obtain it from property delegate
         if (itemListViewModel == null) {
+            // TODO for now we're using the activityViewModels() to keep this fragment's view model
+            // alive across the activity's configuration changes, as it does not need savedStateHandle
+            // to be updated
             val vm: ItemListViewModelImpl by activityViewModels()
+//            val vm: ItemListViewModelImpl by viewModels()
             itemListViewModel = vm
         }
 
@@ -74,7 +82,7 @@ class ItemListFragment : Fragment() {
                 viewOwner = viewLifecycleOwner
             ) { items, selectedPosition ->
                 selectedViewPositionArg?.let {
-                    if (it > 0 && it < items.size) {
+                    if (it >= 0 && it < items.size) {
                         adapter.updateItems(items, it)
                         viewModel.onItemClicked(it)
                         selectedViewPositionArg = null

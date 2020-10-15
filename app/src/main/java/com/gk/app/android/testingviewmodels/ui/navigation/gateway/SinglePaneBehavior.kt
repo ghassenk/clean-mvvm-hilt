@@ -46,7 +46,6 @@ internal class SinglePaneBehavior(
             navController.navigate(R.id.navigation_item_list)
             updateCurrentScreenFromNavController()
         }
-        //?: throw IllegalStateException("No NavController Found!")
     }
 
     override fun showDetailScreen(itemId: String?) {
@@ -57,7 +56,6 @@ internal class SinglePaneBehavior(
             )
             updateCurrentScreenFromNavController()
         }
-        //?: throw IllegalStateException("No NavController Found!")
     }
 
     override fun onNavigateBack() {

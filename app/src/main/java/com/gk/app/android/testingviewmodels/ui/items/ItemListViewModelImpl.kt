@@ -4,8 +4,8 @@ import android.util.Log
 import androidx.hilt.Assisted
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.*
-import com.gk.app.testingviewmodels.domain.items.ItemsUseCase
 import com.gk.app.testingviewmodels.domain.items.Item
+import com.gk.app.testingviewmodels.domain.items.ItemsUseCase
 import kotlinx.coroutines.launch
 
 class ItemListViewModelImpl @ViewModelInject constructor(
@@ -62,7 +62,6 @@ class ItemListViewModelImpl @ViewModelInject constructor(
             itemsUseCase.openItemDetails(it[position].id)
         }
     }
-
     //endregion
 
 }

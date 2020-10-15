@@ -2,6 +2,7 @@ package com.gk.app.android.testingviewmodels.ui.navigation.gateway
 
 import android.app.Activity
 import android.os.Bundle
+import android.util.Log
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import com.gk.app.android.testingviewmodels.R
@@ -31,9 +32,11 @@ internal class DualPaneBehavior(
     private var _currentLeftScreen: Screen? = null
     private var _currentRightScreen: Screen? = null
 
+    //region Life Cycle
     override fun setActivity(activity: Activity?) {
         _activity = WeakReference(activity)
     }
+    //endregion
 
     //region Screens
     fun getCurrentLeftScreen(): Screen? {
@@ -49,29 +52,33 @@ internal class DualPaneBehavior(
     }
 
     override fun showItemsScreen(autoSelectPosition: Int?) {
+        Log.v(javaClass.simpleName, "showItemsScreen() autoSelectPosition=$autoSelectPosition")
         navControllerLeft?.navigate(
             R.id.navigation_item_list,
             Bundle().apply {
-                if (autoSelectPosition != null) {
-                    this.putInt("autoSelectPosition", autoSelectPosition)
-                }
+                autoSelectPosition?.let { this.putInt("autoSelectPosition", it) }
             }
         )
 
-        // If we have an autoSelectPosition we need to wait until items are loaded in order to
-        // select that position => we show loading fragment on the right, and detail will be loaded
-        // automatically with auto-select
+        // If we have an autoSelectPosition we need to wait until items are loaded (show loading on
+        // the right pane) then select the position. The detail will be shown later on the right pane.
         if (autoSelectPosition != null) {
             navControllerRight?.navigate(R.id.navigation_loading)
         } else {
-            navControllerRight?.navigate(R.id.navigation_detail)
+            //navControllerRight?.navigate(R.id.navigation_detail)
         }
 
         updateCurrentScreenFromNavControllers()
     }
 
     override fun showDetailScreen(itemId: String?) {
-        // Nothing to do
+        Log.v(javaClass.simpleName, "showDetailScreen() itemId=$itemId")
+        navControllerRight?.navigate(
+            R.id.navigation_detail,
+            Bundle().apply {
+                itemId?.let { this.putString("itemId", itemId) }
+            }
+        )
     }
 
     override fun onNavigateBack() {
@@ -113,4 +120,5 @@ internal class DualPaneBehavior(
 
     }
     //endregion
+
 }

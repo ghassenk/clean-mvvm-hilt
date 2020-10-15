@@ -30,7 +30,8 @@ class DetailFragment(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        Log.v(javaClass.simpleName, "onCreateView()")
+        Log.v(javaClass.simpleName, "onCreateView() arguments=$arguments" +
+                " savedInstanceState=$savedInstanceState")
         return inflater.inflate(R.layout.fragment_detail, container, false)
     }
 
@@ -40,12 +41,18 @@ class DetailFragment(
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
-        Log.v(javaClass.simpleName, "onActivityCreated() savedInstanceState=$savedInstanceState")
+        Log.v(javaClass.simpleName, "onActivityCreated() arguments=$arguments" +
+                " savedInstanceState=$savedInstanceState")
         super.onActivityCreated(savedInstanceState)
 
         // If we do not have a constructor injected view model, obtain it from property delegate
         if (detailViewModel == null) {
-            val vm: DetailViewModelImpl by viewModels()
+            // Use activityViewModels() to keep view model across configuration changes, but we need
+            // to pass fragment args manually
+            val vm: DetailViewModelImpl by activityViewModels()
+            // Use viewModels() pass automatically fragment's args to view model, but view model will
+            // not be kept following configuration change
+            // val vm: DetailViewModelImpl by viewModels()
             detailViewModel = vm
         }
 

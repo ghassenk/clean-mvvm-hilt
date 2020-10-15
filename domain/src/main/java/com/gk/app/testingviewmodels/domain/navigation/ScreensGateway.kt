@@ -7,9 +7,9 @@ interface ScreensGateway {
 
     fun refreshNavigation()
 
-    fun showItemsScreen(autoSelectPosition: Int?)
+    fun showItemsScreen(autoSelectPosition: Int? = null)
 
-    fun showDetailScreen(itemId:String?)
+    fun showDetailScreen(itemId:String? = null)
 
 
     fun onNavigateBack()
