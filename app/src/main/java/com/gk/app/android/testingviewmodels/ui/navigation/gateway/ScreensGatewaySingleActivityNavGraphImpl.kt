@@ -127,7 +127,7 @@ class ScreensGatewaySingleActivityNavGraphImpl(
 
 //            Screen.ItemDetail -> {
 //                //TODO
-//                dualPaneBehavior?.showItemsScreen(null)
+//                dualPaneBehavior?.showDetailScreen(null)
 //            }
         }
     }
@@ -144,7 +144,7 @@ class ScreensGatewaySingleActivityNavGraphImpl(
                 }
             }
 //            Screen.Loading -> {
-//                behavior.showItemsScreen(null)
+//                behavior.showDetailScreen(itemId)
 //            }
 //            Screen.Error -> {
 //                behavior.showItemsScreen(null)

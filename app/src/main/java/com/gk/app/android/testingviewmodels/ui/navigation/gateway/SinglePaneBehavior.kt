@@ -50,6 +50,7 @@ internal class SinglePaneBehavior(
 
     override fun showDetailScreen(itemId: String?) {
         singleNavController?.let {
+
             it.navigate(
                 R.id.navigation_detail,
                 Bundle().apply { this.putString("itemId", itemId) }

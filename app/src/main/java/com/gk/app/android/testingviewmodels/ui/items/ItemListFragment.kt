@@ -65,7 +65,7 @@ class ItemListFragment : Fragment(R.layout.fragment_items) {
             val vm: ItemListViewModelImpl by viewModels()
 
             // Not compatible with Hilt (for now?)
-            //val vm: ItemListViewModelImpl by navGraphViewModels(R.id.leftNavGraph)
+           // val vm: ItemListViewModelImpl by navGraphViewModels(R.id.leftNavGraph)
 
             itemListViewModel = vm
         }

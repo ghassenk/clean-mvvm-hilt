@@ -44,8 +44,6 @@ class DetailViewModelImpl @ViewModelInject constructor(
             detail.observe(viewOwner, Observer(onDetailUpdate))
             refresh()
         }
-
-
     }
 
     private fun refresh() {
